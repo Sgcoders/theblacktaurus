@@ -10,11 +10,13 @@ use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Http\Requests\CheckoutRequest;
 use Botble\Payment\Http\Requests\PaymentMethodRequest;
 use Botble\Payment\Http\Requests\PayPalPaymentCallbackRequest;
+use Botble\Payment\Http\Requests\HitPayPaymentCallbackRequest;
 use Botble\Payment\Http\Requests\UpdatePaymentRequest;
 use Botble\Payment\Repositories\Interfaces\PaymentInterface;
 use Botble\Payment\Services\Gateways\BankTransferPaymentService;
 use Botble\Payment\Services\Gateways\CodPaymentService;
 use Botble\Payment\Services\Gateways\PayPalPaymentService;
+use Botble\Payment\Services\Gateways\HitPayPaymentService;
 use Botble\Payment\Services\Gateways\StripePaymentService;
 use Botble\Payment\Tables\PaymentTable;
 use Botble\Setting\Supports\SettingStore;
@@ -46,6 +48,11 @@ class PaymentController extends Controller
     protected $payPalService;
 
     /**
+     * @var HitPayPaymentService
+     */
+    protected $hitPayService;
+
+    /**
      * @var StripePaymentService
      */
     protected $stripePaymentService;
@@ -63,6 +70,7 @@ class PaymentController extends Controller
     /**
      * PaymentController constructor.
      * @param PayPalPaymentService $payPalService
+     * @param HitPayPaymentService $hitPayService
      * @param StripePaymentService $stripePaymentService
      * @param CodPaymentService $codPaymentService
      * @param BankTransferPaymentService $bankTransferPaymentService
@@ -70,12 +78,15 @@ class PaymentController extends Controller
      */
     public function __construct(
         PayPalPaymentService $payPalService,
+        HitPayPaymentService $hitPayService,
         StripePaymentService $stripePaymentService,
         CodPaymentService $codPaymentService,
         BankTransferPaymentService $bankTransferPaymentService,
         PaymentInterface $paymentRepository
-    ) {
+    )
+    {
         $this->payPalService = $payPalService;
+        $this->hitPayService = $hitPayService;
 
         $this->stripePaymentService = $stripePaymentService;
         $this->paymentRepository = $paymentRepository;
@@ -155,11 +166,11 @@ class PaymentController extends Controller
         $currency = strtoupper($currency);
 
         $data = [
-            'error'    => false,
-            'message'  => false,
-            'amount'   => $request->input('amount'),
+            'error' => false,
+            'message' => false,
+            'amount' => $request->input('amount'),
             'currency' => $currency,
-            'type'     => $request->input('payment_method'),
+            'type' => $request->input('payment_method'),
         ];
 
         switch ($request->input('payment_method')) {
@@ -192,6 +203,24 @@ class PaymentController extends Controller
                 $data['message'] = $this->payPalService->getErrorMessage();
                 break;
 
+            case PaymentMethodEnum::HITPAY:
+                $supportedCurrencies = $this->hitPayService->supportedCurrencyCodes();
+
+                if (!in_array($data['currency'], $supportedCurrencies)) {
+                    $data['error'] = true;
+                    $data['message'] = __(":name doesn't support :currency. List of currencies supported by :name: :currencies.", ['name' => 'HitPay', 'currency' => get_application_currency()->title, 'currencies' => implode(', ', $supportedCurrencies)]);
+                    break;
+                }
+
+                $checkoutUrl = $this->hitPayService->execute($request);
+                if ($checkoutUrl) {
+                    return redirect($checkoutUrl);
+                }
+
+                $data['error'] = true;
+                $data['message'] = $this->hitPayService->getErrorMessage();
+                break;
+
             case PaymentMethodEnum::COD:
                 $chargeId = $this->codPaymentService->execute($request);
                 return redirect()->to($returnUrl . '?charge_id=' . $chargeId)->with('success_msg',
@@ -211,7 +240,9 @@ class PaymentController extends Controller
             return redirect()->back()->with('error_msg', $data['message'])->withInput($request->input());
         }
 
-        $callbackUrl = $request->input('callback_url') . '?' . http_build_query($data);
+        $key = $request->input('payment_method') ==  PaymentMethodEnum::HITPAY ? '1':'';
+        $callbackUrl = $request->input('callback_url'.$key) . '?' . http_build_query($data);
+        exit($callbackUrl);
 
         return redirect()->to($callbackUrl)->with('success_msg', trans('plugins/payment::payment.checkout_success'));
     }
@@ -227,8 +258,29 @@ class PaymentController extends Controller
         PayPalPaymentCallbackRequest $request,
         PayPalPaymentService $palPaymentService,
         BaseHttpResponse $response
-    ) {
+    )
+    {
         $palPaymentService->afterMakePayment($request);
+
+        return $response
+            ->setNextUrl(route('public.index'))
+            ->setMessage(__('Checkout successfully!'));
+    }
+
+    /**
+     * @param HitPayPaymentCallbackRequest $request
+     * @param HitPayPaymentService $hitpayPaymentService
+     * @param BaseHttpResponse $response
+     * @return BaseHttpResponse
+     * @throws Throwable
+     */
+    public function getHitPayStatus(
+        HitPayPaymentCallbackRequest $request,
+        HitPayPaymentService $hitpayPaymentService,
+        BaseHttpResponse $response
+    )
+    {
+        $hitpayPaymentService->afterMakePayment($request);
 
         return $response
             ->setNextUrl(route('public.index'))
@@ -252,6 +304,11 @@ class PaymentController extends Controller
             case PaymentMethodEnum::PAYPAL:
                 $paymentDetail = $this->payPalService->getPaymentDetails($payment->charge_id);
                 $detail = view('plugins/payment::paypal.detail', ['payment' => $paymentDetail])->render();
+                break;
+
+            case PaymentMethodEnum::HITPAY:
+                $paymentDetail = $this->hitPayService->getPaymentDetails($payment->charge_id);
+                $detail = view('plugins/payment::hitpay.detail', ['payment' => $paymentDetail])->render();
                 break;
             case PaymentMethodEnum::STRIPE:
                 $paymentDetail = $this->stripePaymentService->getPaymentDetails($payment->charge_id);
@@ -385,7 +442,7 @@ class PaymentController extends Controller
             if ($refunds) {
                 foreach ($refunds as $key => $refund) {
                     if (Arr::get($refund, '_refund_id') == $refundId) {
-                        $refunds[$key] = array_merge($refunds[$key], (array) Arr::get($data, 'data'));
+                        $refunds[$key] = array_merge($refunds[$key], (array)Arr::get($data, 'data'));
                     }
                 }
 
@@ -402,7 +459,7 @@ class PaymentController extends Controller
         }
 
         return $response
-            ->setError((bool) Arr::get($data, 'error'))
+            ->setError((bool)Arr::get($data, 'error'))
             ->setMessage(Arr::get($data, 'message', ''));
     }
 }

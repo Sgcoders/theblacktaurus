@@ -25,9 +25,11 @@ use Botble\Ecommerce\Services\HandleRemoveCouponService;
 use Botble\Ecommerce\Services\HandleShippingFeeService;
 use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Http\Requests\PayPalPaymentCallbackRequest;
+use Botble\Payment\Http\Requests\HitPayPaymentCallbackRequest;
 use Botble\Payment\Services\Gateways\BankTransferPaymentService;
 use Botble\Payment\Services\Gateways\CodPaymentService;
 use Botble\Payment\Services\Gateways\PayPalPaymentService;
+use Botble\Payment\Services\Gateways\HitPayPaymentService;
 use Botble\Payment\Services\Gateways\StripePaymentService;
 use Botble\Payment\Supports\PaymentHelper;
 use Cart;
@@ -552,6 +554,7 @@ class PublicCheckoutController
      * @param string $token
      * @param CheckoutRequest $request
      * @param PayPalPaymentService $palPaymentService
+     * @param HitPayPaymentService $hitpayPaymentService
      * @param StripePaymentService $stripePaymentService
      * @param BaseHttpResponse $response
      * @param HandleShippingFeeService $shippingFeeService
@@ -564,6 +567,7 @@ class PublicCheckoutController
         $token,
         CheckoutRequest $request,
         PayPalPaymentService $payPalService,
+        HitPayPaymentService $hitPayService,
         StripePaymentService $stripePaymentService,
         CodPaymentService $codPaymentService,
         BankTransferPaymentService $bankTransferPaymentService,
@@ -790,7 +794,26 @@ class PublicCheckoutController
                     }
 
                     $paymentData['error'] = true;
-                    $paymentData['message'] = $payPalService->getErrorMessage();
+                    $paymentData['message'] = $hitPayService->getErrorMessage();
+                    break;
+                case PaymentMethodEnum::HITPAY:
+
+                    $supportedCurrencies = $hitPayService->supportedCurrencyCodes();
+
+                    if (!in_array($paymentData['currency'], $supportedCurrencies)) {
+                        $paymentData['error'] = true;
+                        $paymentData['message'] = __(":name doesn't support :currency. List of currencies supported by :name: :currencies.", ['name' => 'HitPay', 'currency' => $paymentData['currency'], 'currencies' => implode(', ', $supportedCurrencies)]);
+                        break;
+                    }
+
+                    $checkoutUrl = $hitPayService->execute($request);
+                    if ($checkoutUrl) {
+//                        exit($checkoutUrl);
+                        return redirect($checkoutUrl);
+                    }
+
+                    $paymentData['error'] = true;
+                    $paymentData['message'] = $hitPayService->getErrorMessage();
                     break;
                 case PaymentMethodEnum::COD:
 
@@ -997,6 +1020,41 @@ class PublicCheckoutController
         }
 
         $payPalPaymentService->afterMakePayment($request);
+
+        return $response
+            ->setNextUrl(PaymentHelper::getRedirectURL())
+            ->setMessage(__('Checkout successfully!'));
+    }
+
+
+    /**
+     * @param HitPayPaymentCallbackRequest $request
+     * @param HitPayPaymentService $hitPayPaymentService
+     * @param BaseHttpResponse $response
+     * @return BaseHttpResponse
+     */
+    public function getHitPayStatus(
+        HitPayPaymentCallbackRequest $request,
+        HitPayPaymentService $hitPayPaymentService,
+        BaseHttpResponse $response
+    ) {
+        if (!EcommerceHelper::isCartEnabled()) {
+            abort(404);
+        }
+
+        $queries = array();
+        parse_str($_SERVER['QUERY_STRING'], $queries);
+//      $status = $hitPayPaymentService->getPaymentStatus($request);
+
+        if ($queries['status'] != 'completed') {
+            return $response
+                ->setError()
+                ->setNextUrl(PaymentHelper::getCancelURL(OrderHelper::getOrderSessionToken()))
+                ->withInput()
+                ->setMessage(__('Payment failed!'));
+        }
+
+        $hitPayPaymentService->afterMakePayment($request);
 
         return $response
             ->setNextUrl(PaymentHelper::getRedirectURL())

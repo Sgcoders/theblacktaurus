@@ -163,6 +163,7 @@
                                 <input type="hidden" name="amount" value="{{ ($promotionDiscountAmount + $couponDiscountAmount - $shippingAmount) > Cart::instance('cart')->rawTotal() ? 0 : format_price(Cart::instance('cart')->rawTotal() - $promotionDiscountAmount - $couponDiscountAmount + $shippingAmount, null, true) }}">
                                 <input type="hidden" name="currency" value="{{ strtoupper(get_application_currency()->title) }}">
                                 <input type="hidden" name="callback_url" value="{{ route('public.payment.paypal.status') }}">
+                                <input type="hidden" name="callback_url1" value="{{ route('public.payment.hitpay.status') }}">
                                 <input type="hidden" name="return_url" value="{{ \Botble\Payment\Supports\PaymentHelper::getRedirectURL($token) }}">
                                 {!! apply_filters(PAYMENT_FILTER_PAYMENT_PARAMETERS, null) !!}
                                 <ul class="list-group list_payment_method">

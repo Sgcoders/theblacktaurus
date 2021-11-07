@@ -222,6 +222,110 @@
                         </tbody>
                     </table>
 
+                    @php $hitPayStatus = setting('payment_hitpay_status'); @endphp
+                    <table class="table payment-method-item">
+                        <tbody>
+                        <tr class="border-pay-row">
+                            <td class="border-pay-col"><i class="fa fa-theme-payments"></i></td>
+                            <td style="width: 20%;">
+                                <img class="filter-black" src="{{ url('vendor/core/plugins/payment/images/hitpay.svg') }}" alt="PayPal">
+                            </td>
+                            <td class="border-right">
+                                <ul>
+                                    <li>
+                                        <a href="https://www.hitpayapp.com/" target="_blank">HitPay</a>
+                                        <p>{{ trans('plugins/payment::payment.hitpay_description') }}</p>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="bg-white">
+                            <td colspan="3">
+                                <div class="float-start" style="margin-top: 5px;">
+                                    <div class="payment-name-label-group  @if ($hitPayStatus== 0) hidden @endif">
+                                        <span class="payment-note v-a-t">{{ trans('plugins/payment::payment.use') }}:</span> <label class="ws-nm inline-display method-name-label">{{ setting('payment_hitpay_name') }}</label>
+                                    </div>
+                                </div>
+                                <div class="float-end">
+                                    <a class="btn btn-secondary toggle-payment-item edit-payment-item-btn-trigger @if ($hitPayStatus == 0) hidden @endif">{{ trans('plugins/payment::payment.edit') }}</a>
+                                    <a class="btn btn-secondary toggle-payment-item save-payment-item-btn-trigger @if ($hitPayStatus == 1) hidden @endif">{{ trans('plugins/payment::payment.settings') }}</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="paypal-online-payment payment-content-item hidden">
+                            <td class="border-left" colspan="3">
+                                {!! Form::open() !!}
+                                {!! Form::hidden('type', \Botble\Payment\Enums\PaymentMethodEnum::HITPAY, ['class' => 'payment_type']) !!}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul>
+                                            <li>
+                                                <label>{{ trans('plugins/payment::payment.configuration_instruction', ['name' => 'HitPay']) }}</label>
+                                            </li>
+                                            <li class="payment-note">
+                                                <p>{{ trans('plugins/payment::payment.configuration_requirement', ['name' => 'HitPay']) }}:</p>
+                                                <ul class="m-md-l" style="list-style-type:decimal">
+                                                    <li style="list-style-type:decimal">
+                                                        <a href="https://dashboard.hit-pay.com/register" target="_blank">
+                                                            {{ trans('plugins/payment::payment.service_registration', ['name' => 'HitPay']) }}
+                                                        </a>
+                                                    </li>
+                                                    <li style="list-style-type:decimal">
+                                                        <p>{{ trans('plugins/payment::payment.hitpay_after_service_registration_msg', ['name' => 'HitPay']) }}</p>
+                                                    </li>
+                                                    <li style="list-style-type:decimal">
+                                                        <p>{{ trans('plugins/payment::payment.hitpay_enter_api_key_and_salt') }}</p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="well bg-white">
+                                            <div class="form-group mb-3">
+                                                <label class="text-title-field" for="hitpay_name">{{ trans('plugins/payment::payment.method_name') }}</label>
+                                                <input type="text" class="next-input input-name" name="payment_hitpay_name" id="hitpay_name" data-counter="400" value="{{ setting('payment_hitpay_name', trans('plugins/payment::payment.pay_online_via', ['name' => 'HitPay'])) }}">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label class="text-title-field" for="payment_hitpay_description">{{ trans('core/base::forms.description') }}</label>
+                                                <textarea class="next-input" name="payment_hitpay_description" id="payment_paypal_description">{{ get_payment_setting('description', 'hitpay', __('Payment with HitPay')) }}</textarea>
+                                            </div>
+                                            <p class="payment-note">
+                                                {{ trans('plugins/payment::payment.please_provide_information') }} <a target="_blank" href="//www.hitpayapp.com/">HitPay</a>:
+                                            </p>
+                                            <div class="form-group mb-3">
+                                                <label class="text-title-field" for="hitpay_api_key">{{ trans('plugins/payment::payment.hitpay_api_key') }}</label>
+                                                <input type="text" class="next-input" name="payment_hitpay_api_key" id="hitpay_api_key" value="{{ app()->environment('demo') ? '*******************************' :setting('payment_hitpay_api_key') }}">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label class="text-title-field" for="hitpay_salt">{{ trans('plugins/payment::payment.hitpay_salt') }}</label>
+                                                <div class="input-option">
+                                                    <input type="password" class="next-input" placeholder="••••••••" id="hitpay_salt" name="payment_hitpay_salt" value="{{ app()->environment('demo') ? '*******************************' : setting('payment_hitpay_salt') }}">
+                                                </div>
+                                            </div>
+{{--                                            {!! Form::hidden('payment_hitpay_mode', 1) !!}--}}
+{{--                                            <div class="form-group mb-3">--}}
+{{--                                                <label class="next-label">--}}
+{{--                                                    <input type="checkbox"  value="0" name="payment_hitpay_mode" @if (setting('payment_hitpay_mode') == 0) checked @endif>--}}
+{{--                                                    {{ trans('plugins/payment::payment.sandbox_mode') }}--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+
+                                            {!! apply_filters(PAYMENT_METHOD_SETTINGS_CONTENT, null, 'hitpay') !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 bg-white text-end">
+                                    <button class="btn btn-warning disable-payment-item @if ($hitPayStatus == 0) hidden @endif" type="button">{{ trans('plugins/payment::payment.deactivate') }}</button>
+                                    <button class="btn btn-info save-payment-item btn-text-trigger-save @if ($hitPayStatus == 1) hidden @endif" type="button">{{ trans('plugins/payment::payment.activate') }}</button>
+                                    <button class="btn btn-info save-payment-item btn-text-trigger-update @if ($hitPayStatus == 0) hidden @endif" type="button">{{ trans('plugins/payment::payment.update') }}</button>
+                                </div>
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                     {!! apply_filters(PAYMENT_METHODS_SETTINGS_PAGE, null) !!}
 
                     <div class="table-responsive">

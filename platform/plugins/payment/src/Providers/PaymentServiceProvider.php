@@ -6,6 +6,7 @@ use Botble\Base\Traits\LoadAndPublishDataTrait;
 use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Models\Payment;
 use Botble\Payment\Services\Gateways\PayPalPaymentService;
+use Botble\Payment\Services\Gateways\HitPayPaymentService;
 use Botble\Payment\Services\Gateways\StripePaymentService;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Routing\Events\RouteMatched;
@@ -111,6 +112,10 @@ class PaymentServiceProvider extends ServiceProvider
                     $paymentDetail = (new PayPalPaymentService)->getPaymentDetails($payment->charge_id);
                     $detail = view('plugins/payment::paypal.detail', ['payment' => $paymentDetail])->render();
                     break;
+                 case PaymentMethodEnum::HITPAY:
+                    $paymentDetail = (new HitPayPaymentService)->getPaymentDetails($payment->charge_id);
+                    $detail = view('plugins/payment::hitpay.detail', ['payment' => $paymentDetail])->render();
+                    break;
                 case PaymentMethodEnum::STRIPE:
                     $paymentDetail = (new StripePaymentService)->getPaymentDetails($payment->charge_id);
                     $detail = view('plugins/payment::stripe.detail', ['payment' => $paymentDetail])->render();
@@ -139,6 +144,7 @@ class PaymentServiceProvider extends ServiceProvider
         add_filter(PAYMENT_FILTER_ADDITIONAL_PAYMENT_METHODS, function ($html, array $data) {
             $html .= view('plugins/payment::stripe.methods', $data)->render();
             $html .= view('plugins/payment::paypal.methods', $data)->render();
+            $html .= view('plugins/payment::hitpay.methods', $data)->render();
 
             return $html;
         }, 1, 2);
