@@ -2,6 +2,7 @@
 
 namespace Botble\Payment\Services\Gateways;
 
+use Botble\Ecommerce\Enums\OrderStatusEnum;
 use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Services\Abstracts\HitPayPaymentAbstract;
@@ -60,7 +61,6 @@ class HitPayPaymentService extends HitPayPaymentAbstract
     public function afterMakePayment(Request $request)
     {
         $status = PaymentStatusEnum::COMPLETED;
-
         $chargeId = session('hitpay_payment_id');
 
         $orderIds = (array)$request->input('order_id', []);
@@ -73,7 +73,7 @@ class HitPayPaymentService extends HitPayPaymentAbstract
             'customer_id'     => $request->input('customer_id'),
             'customer_type'   => $request->input('customer_type'),
             'payment_channel' => PaymentMethodEnum::HITPAY,
-            'status'          => $status,
+            'status'          => $status
         ]);
 
         session()->forget('hitpay_payment_id');

@@ -15,6 +15,7 @@ use Botble\Ecommerce\Repositories\Interfaces\OrderHistoryInterface;
 use Botble\Ecommerce\Repositories\Interfaces\OrderInterface;
 use Botble\Ecommerce\Repositories\Interfaces\OrderProductInterface;
 use Botble\Ecommerce\Repositories\Interfaces\ShippingRuleInterface;
+use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Repositories\Interfaces\PaymentInterface;
 use Cart;
@@ -71,6 +72,12 @@ class OrderHelper
                     $payment = $payments->firstWhere('order_id', $order->id);
                     if ($payment) {
                         $order->payment_id = $payment->id;
+                        if($payment->payment_channel == PaymentMethodEnum::HITPAY && $payment->status == PaymentStatusEnum::COMPLETED){
+                            $order->status = OrderStatusEnum::COMPLETED;
+                            $order->is_confirmed = 1;
+                        }
+                        $order->payment_id = $payment->id;
+//                        print_r($order);exit;
                         $order->save();
                     }
                 }
