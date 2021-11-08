@@ -72,12 +72,7 @@ class OrderHelper
                     $payment = $payments->firstWhere('order_id', $order->id);
                     if ($payment) {
                         $order->payment_id = $payment->id;
-                        if($payment->payment_channel == PaymentMethodEnum::HITPAY && $payment->status == PaymentStatusEnum::COMPLETED){
-                            $order->status = OrderStatusEnum::COMPLETED;
-                            $order->is_confirmed = 1;
-                        }
                         $order->payment_id = $payment->id;
-//                        print_r($order);exit;
                         $order->save();
                     }
                 }
@@ -663,8 +658,12 @@ class OrderHelper
      * @throws FileNotFoundException
      * @throws Throwable
      */
-    public function confirmPayment($order)
+    public function confirmPayment($order, $flag = false)
     {
+        if($flag == true){
+            $orders = app(OrderInterface::class)->allBy([['id', 'IN', $order]]);
+            $order = $orders[0];
+        }
         $payment = $order->payment;
 
         if (!$payment) {
@@ -683,15 +682,19 @@ class OrderHelper
                 $order->user->email ?: $order->address->email
             );
         }
-
-        app(OrderHistoryInterface::class)->createOrUpdate([
+        $data = [
             'action'      => 'confirm_payment',
-            'description' => trans('plugins/ecommerce::order.payment_was_confirmed_by', [
-                'money' => format_price($order->amount),
-            ]),
             'order_id'    => $order->id,
-            'user_id'     => Auth::id(),
-        ]);
+            'description' => trans('plugins/ecommerce::order.payment_was_confirmed_by', [
+                'money' => format_price($order->amount)
+            ])
+        ];
+        if($flag == true){
+            $data['description'] .= ' System';
+        }else{
+            $data['user_id'] = Auth::id();
+        }
+        app(OrderHistoryInterface::class)->createOrUpdate($data);
 
         return true;
     }

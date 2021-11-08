@@ -280,7 +280,7 @@ class PaymentController extends Controller
         BaseHttpResponse $response
     )
     {
-        $hitpayPaymentService->afterMakePayment($request);
+        $hitpayPaymentService->afterMakePayment($request, );
 
         return $response
             ->setNextUrl(route('public.index'))

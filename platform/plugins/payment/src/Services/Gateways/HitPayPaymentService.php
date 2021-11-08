@@ -6,11 +6,28 @@ use Botble\Ecommerce\Enums\OrderStatusEnum;
 use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Services\Abstracts\HitPayPaymentAbstract;
+use Botble\Ecommerce\Repositories\Interfaces\OrderHistoryInterface;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Botble\Ecommerce\Supports\OrderHelper;
 
 class HitPayPaymentService extends HitPayPaymentAbstract
 {
+
+    /**
+     * @var OrderHistoryInterface
+     */
+    protected $orderHistoryRepository;
+    /**
+     * @param OrderHistoryInterface $orderHistoryRepository
+     */
+    public function _construct(
+        OrderHistoryInterface $orderHistoryRepository
+    ) {
+        $this->orderHistoryRepository = $orderHistoryRepository;
+    }
+
     /**
      * Make a payment
      *
@@ -75,7 +92,7 @@ class HitPayPaymentService extends HitPayPaymentAbstract
             'payment_channel' => PaymentMethodEnum::HITPAY,
             'status'          => $status
         ]);
-
+        OrderHelper::confirmPayment($orderIds, true);
         session()->forget('hitpay_payment_id');
 
         return $chargeId;

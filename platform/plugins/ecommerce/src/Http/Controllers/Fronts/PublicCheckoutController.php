@@ -1054,6 +1054,7 @@ class PublicCheckoutController
                 ->setMessage(__('Payment failed!'));
         }
 
+
         $hitPayPaymentService->afterMakePayment($request);
 
         return $response
