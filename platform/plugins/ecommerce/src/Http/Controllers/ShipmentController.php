@@ -16,6 +16,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Botble\Ecommerce\Tables\ShipmentTable;
 use OrderHelper;
 
 class ShipmentController extends BaseController
@@ -56,6 +57,18 @@ class ShipmentController extends BaseController
         $this->shipmentRepository = $shipmentRepository;
         $this->orderHistoryRepository = $orderHistoryRepository;
         $this->shipmentHistoryRepository = $shipmentHistoryRepository;
+    }
+
+    /**
+     * @param ShipmentTable $dataTable
+     * @return Factory|View
+     * @throws Throwable
+     */
+    public function index(ShipmentTable $table)
+    {
+//        page_title()->setTitle(trans('plugins/ecommerce::payment.name'));
+
+        return $table->renderTable();
     }
 
     /**

@@ -508,8 +508,8 @@ class OrderController extends BaseController
             'weight'      => $weight,
             'order_total' => $order->amount,
         ];
-
         $shipping = $shippingFeeService->execute($shippingData);
+//        print_r($shipping);exit();
 
         $storeLocators = $this->storeLocatorRepository->allBy(['is_shipping_location' => true]);
 

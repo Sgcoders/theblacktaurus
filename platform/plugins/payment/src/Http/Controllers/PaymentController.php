@@ -242,8 +242,6 @@ class PaymentController extends Controller
 
         $key = $request->input('payment_method') ==  PaymentMethodEnum::HITPAY ? '1':'';
         $callbackUrl = $request->input('callback_url'.$key) . '?' . http_build_query($data);
-        exit($callbackUrl);
-
         return redirect()->to($callbackUrl)->with('success_msg', trans('plugins/payment::payment.checkout_success'));
     }
 
@@ -280,11 +278,11 @@ class PaymentController extends Controller
         BaseHttpResponse $response
     )
     {
-        $hitpayPaymentService->afterMakePayment($request, );
+        $hitpayPaymentService->afterMakePayment($request);
 
         return $response
             ->setNextUrl(route('public.index'))
-            ->setMessage(__('Checkout successfully!'));
+            ->setMessage(__('2Checkout successfully!'));
     }
 
     /**

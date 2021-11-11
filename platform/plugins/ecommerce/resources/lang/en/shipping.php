@@ -71,6 +71,7 @@ return [
     'shipment_information'                => 'Shipment information',
     'order_number'                        => 'Order number',
     'shipping_method'                     => 'Shipping method',
+    'shipments'                           => 'Shipments',
     'select_shipping_method'              => 'Select shipping method',
     'cod_status'                          => 'COD status',
     'shipping_status'                     => 'Shipping status',

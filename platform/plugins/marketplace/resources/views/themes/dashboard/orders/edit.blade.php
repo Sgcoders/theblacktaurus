@@ -1,5 +1,4 @@
 @extends(MarketplaceHelper::viewPath('dashboard.layouts.master'))
-
 @section('content')
     <div class="flexbox-layout-sections" id="main-order-content" style="margin: 0 -20px;">
         @if ($order->status == \Botble\Ecommerce\Enums\OrderStatusEnum::CANCELED)

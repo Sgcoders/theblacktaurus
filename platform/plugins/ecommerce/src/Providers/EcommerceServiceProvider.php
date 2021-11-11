@@ -505,8 +505,26 @@ class EcommerceServiceProvider extends ServiceProvider
                     'permissions' => ['orders.index'],
                 ])
                 ->registerItem([
-                    'id'          => 'cms-plugins-ecommerce.product',
+                    'id'          => 'cms-plugins-ecommerce-shipments',
                     'priority'    => 3,
+                    'parent_id'   => 'cms-plugins-ecommerce',
+                    'name'        => 'plugins/ecommerce::shipping.shipments',
+                    'icon'        => 'fas fa-shipping-fast',
+                    'url'         => route('ecommerce.shipments.index'),
+                    'permissions' => ['orders.index'],
+                ])
+                ->registerItem([
+                    'id'          => 'cms-plugins-ecommerce-shipping-provider',
+                    'priority'    => 4,
+                    'parent_id'   => 'cms-plugins-ecommerce',
+                    'name'        => 'plugins/ecommerce::shipping.shipping_rules',
+                    'icon'        => 'fas fa-tasks',
+                    'url'         => route('shipping_methods.index'),
+                    'permissions' => ['shipping_methods.index'],
+                ])
+                ->registerItem([
+                    'id'          => 'cms-plugins-ecommerce.product',
+                    'priority'    => 5,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::products.name',
                     'icon'        => 'fa fa-camera',
@@ -515,7 +533,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-product-categories',
-                    'priority'    => 4,
+                    'priority'    => 6,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::product-categories.name',
                     'icon'        => 'fa fa-archive',
@@ -524,7 +542,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-product-tag',
-                    'priority'    => 4,
+                    'priority'    => 7,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::product-tag.name',
                     'icon'        => 'fa fa-tag',
@@ -533,7 +551,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-product-attribute',
-                    'priority'    => 5,
+                    'priority'    => 8,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::product-attributes.name',
                     'icon'        => 'fas fa-glass-martini',
@@ -542,7 +560,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-brands',
-                    'priority'    => 6,
+                    'priority'    => 9,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::brands.name',
                     'icon'        => 'fa fa-registered',
@@ -551,7 +569,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-product-collections',
-                    'priority'    => 7,
+                    'priority'    => 10,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::product-collections.name',
                     'icon'        => 'fa fa-file-excel',
@@ -560,7 +578,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-product-label',
-                    'priority'    => 8,
+                    'priority'    => 11,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::product-label.name',
                     'icon'        => 'fas fa-tags',
@@ -569,7 +587,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-ecommerce-review',
-                    'priority'    => 9,
+                    'priority'    => 12,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::review.name',
                     'icon'        => 'fa fa-comments',
@@ -577,17 +595,8 @@ class EcommerceServiceProvider extends ServiceProvider
                     'permissions' => ['reviews.index'],
                 ])
                 ->registerItem([
-                    'id'          => 'cms-plugins-ecommerce-shipping-provider',
-                    'priority'    => 10,
-                    'parent_id'   => 'cms-plugins-ecommerce',
-                    'name'        => 'plugins/ecommerce::shipping.shipping',
-                    'icon'        => 'fas fa-shipping-fast',
-                    'url'         => route('shipping_methods.index'),
-                    'permissions' => ['shipping_methods.index'],
-                ])
-                ->registerItem([
                     'id'          => 'cms-plugins-ecommerce-discount',
-                    'priority'    => 11,
+                    'priority'    => 13,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::discount.name',
                     'icon'        => 'fa fa-gift',
@@ -596,7 +605,7 @@ class EcommerceServiceProvider extends ServiceProvider
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-ecommerce-customer',
-                    'priority'    => 13,
+                    'priority'    => 14,
                     'parent_id'   => 'cms-plugins-ecommerce',
                     'name'        => 'plugins/ecommerce::customer.name',
                     'icon'        => 'fa fa-users',
