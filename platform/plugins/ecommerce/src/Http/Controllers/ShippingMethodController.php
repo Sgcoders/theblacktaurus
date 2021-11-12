@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Throwable;
+use Illuminate\Support\Facades\Auth;
 
 class ShippingMethodController extends BaseController
 {

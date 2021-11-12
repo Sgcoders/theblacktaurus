@@ -222,7 +222,12 @@ return [
     ],
 
     [
-        'name'        => 'Shipping',
+        'name'        => 'Shipments',
+        'flag'        => 'shipments.index',
+        'parent_flag' => 'plugins.ecommerce',
+    ],
+    [
+        'name'        => 'Shipping rules',
         'flag'        => 'shipping_methods.index',
         'parent_flag' => 'plugins.ecommerce',
     ],

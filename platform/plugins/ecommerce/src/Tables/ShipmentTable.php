@@ -3,11 +3,9 @@
 namespace Botble\Ecommerce\Tables;
 
 use BaseHelper;
-use Botble\Ecommerce\Enums\OrderStatusEnum;
 use Botble\Ecommerce\Enums\ShippingStatusEnum;
 use Botble\Ecommerce\Repositories\Interfaces\ShipmentInterface;
 use Botble\Table\Abstracts\TableAbstract;
-use EcommerceHelper;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -38,8 +36,7 @@ class ShipmentTable extends TableAbstract
         parent::__construct($table, $urlGenerator);
 
         $this->repository = $shipmentRepository;
-
-        if (!Auth::user()->hasPermission('orders.edit')) {
+        if (!Auth::user()->hasPermission('shipments.index')) {
             $this->hasOperations = false;
             $this->hasActions = false;
         }
@@ -106,7 +103,6 @@ class ShipmentTable extends TableAbstract
 
     public function cClean($label){
         $class = 'info';
-//        exit($label);
         switch ($label){
             case ShippingStatusEnum::DELIVERED: global $class; $class = 'primary'; break;
             case ShippingStatusEnum::DELIVERING: global $class; $class = 'warning';break;

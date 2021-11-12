@@ -10,6 +10,7 @@ use EcommerceHelper;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
+use Botble\Ecommerce\Enums\ShippingStatusEnum;
 
 class OrderTable extends TableAbstract
 {
@@ -58,6 +59,9 @@ class OrderTable extends TableAbstract
             ->editColumn('payment_status', function ($item) {
                 return $item->payment->status->label() ? clean($item->payment->status->toHtml()) : '&mdash;';
             })
+            ->editColumn('shipping_option', function ($item) {
+                return $item->shipment->status->label() ? $this->cClean($item->shipment->status) : '&mdash;';
+            })
             ->editColumn('payment_method', function ($item) {
                 return $item->payment->payment_channel->label() ? clean($item->payment->payment_channel->label()) : '&mdash;';
             })
@@ -104,7 +108,7 @@ class OrderTable extends TableAbstract
                 'shipping_amount',
                 'payment_id',
             ])
-            ->with(['user', 'payment'])
+            ->with(['user', 'payment', 'shipment'])
             ->where('is_finished', 1);
 
         return $this->applyScopes($query);
@@ -154,7 +158,12 @@ class OrderTable extends TableAbstract
                 'class' => 'text-center',
             ],
             'status'          => [
-                'title' => trans('core/base::tables.status'),
+                'title' => trans('plugins/ecommerce::order.order').' '.trans('core/base::tables.status'),
+                'class' => 'text-center',
+            ],
+            'shipping_option'  => [
+                'name'  => 'payment_id',
+                'title' => trans('plugins/ecommerce::shipping.shipping_status'),
                 'class' => 'text-center',
             ],
             'created_at'      => [
@@ -226,5 +235,18 @@ class OrderTable extends TableAbstract
             'export',
             'reload',
         ];
+    }
+
+    public static function cClean($label){
+        $class = 'info';
+        switch ($label){
+            case ShippingStatusEnum::DELIVERED: global $class; $class = 'primary'; break;
+            case ShippingStatusEnum::DELIVERING: global $class; $class = 'warning';break;
+            case ShippingStatusEnum::KIV: $class = 'default';break;
+            case ShippingStatusEnum::PENDING: $class = 'info';break;
+            case ShippingStatusEnum::CANCELED: $class = 'danger';break;
+            case ShippingStatusEnum::APPROVED: $class = 'success';break;
+        }
+        return '<span class="label-'.$class.' status-label">'.$label->label().'</span>';
     }
 }
