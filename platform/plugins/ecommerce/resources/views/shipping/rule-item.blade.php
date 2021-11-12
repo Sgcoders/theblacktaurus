@@ -115,10 +115,11 @@
                                 </div>
                                 <div class="flexbox-content-no-padding pl15">
                                     <div class="form-group mb-3">
-                                        <label
-                                            class="text-title-field rule-from-to-label">{{ trans('plugins/ecommerce::shipping.receive_by') }}</label>
                                         <div class="flexbox-grid-default flexbox-align-items-center">
                                             <div class="flexbox-auto-content">
+
+                                        <label
+                                            class="text-title-field rule-from-to-label">{{ trans('plugins/ecommerce::shipping.from_day') }}</label>
                                                 <div class="next-input--stylized">
                                                     <input type="number" step="1" min="0" name="from_date"
                                                            class="next-input input-mask-number next-input--invisible input-sync-item1"
@@ -126,10 +127,14 @@
                                                            value="{{ $rule ? $rule->from_date : 0 }}">
                                                 </div>
                                             </div>
+
                                             <div class="flexbox-auto-left pl5 p-r5">
                                                 <span class="inline">—</span>
                                             </div>
                                             <div class="flexbox-auto-content">
+
+                                        <label
+                                            class="text-title-field rule-from-to-label">{{ trans('plugins/ecommerce::shipping.to_day') }}</label>
                                                 <div class="next-input--stylized">
                                                     <input type="number" step="1" min="0" name="to_date"
                                                            class="next-input input-mask-number next-input--invisible input-sync-item1"

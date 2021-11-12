@@ -57,6 +57,8 @@ return [
     'save' => 'Save',
     'greater_than' => 'Greater than',
     'receive_by' => 'Receive by',
+    'from_day' => 'From day',
+    'to_day' => 'To day',
     'days' => 'days',
     'same_day' => 'same day',
     'day' => 'day',

@@ -110,7 +110,7 @@ class ShipmentTable extends TableAbstract
         switch ($label){
             case ShippingStatusEnum::DELIVERED: global $class; $class = 'primary'; break;
             case ShippingStatusEnum::DELIVERING: global $class; $class = 'warning';break;
-            case ShippingStatusEnum::KIV: $class = 'dark';break;
+            case ShippingStatusEnum::KIV: $class = 'default';break;
             case ShippingStatusEnum::PENDING: $class = 'info';break;
             case ShippingStatusEnum::CANCELED: $class = 'danger';break;
             case ShippingStatusEnum::APPROVED: $class = 'success';break;
