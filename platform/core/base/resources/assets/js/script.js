@@ -600,6 +600,7 @@ class Botble {
         return s.join(dec);
     }
 
+
     static callScroll(obj) {
         obj.mCustomScrollbar({
             axis: 'yx',

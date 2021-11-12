@@ -9,4 +9,5 @@
             data-option="{{ $shippingOption }}"
     >
     <label for="shipping-method-{{ $shippingKey }}-{{ $shippingOption }}">{{ $shippingItem['name'] }} - {{ format_price($shippingItem['price']) }}</strong></label>
+    <small for="shipping-method-{{ $shippingKey }}-{{ $shippingOption }}-receive_by">{{ trans('plugins/ecommerce::shipping.receive_by') }} {{ OrderHelper::getShippingReceiveBy($shippingKey, $shippingOption)}}</strong></small>
 </li>

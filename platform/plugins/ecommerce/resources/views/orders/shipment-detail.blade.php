@@ -30,7 +30,7 @@
     @if ($shipment->status != \Botble\Ecommerce\Enums\ShippingStatusEnum::CANCELED)
         <div class="panel-heading order-bottom shipment-actions-wrapper">
             <div class="flexbox-grid-default">
-                @if (in_array($shipment->status, [\Botble\Ecommerce\Enums\ShippingStatusEnum::NOT_APPROVED, \Botble\Ecommerce\Enums\ShippingStatusEnum::APPROVED]))
+                @if (in_array($shipment->status, [\Botble\Ecommerce\Enums\ShippingStatusEnum::SELF_COLLECT, \Botble\Ecommerce\Enums\ShippingStatusEnum::APPROVED]))
                     <div class="flexbox-content">
                         <button type="button" class="btn btn-secondary btn-destroy btn-cancel-shipment" data-action="{{ route('orders.cancel-shipment', $shipment->id) }}">{{ trans('plugins/ecommerce::shipping.cancel_shipping') }}</button>
                     </div>

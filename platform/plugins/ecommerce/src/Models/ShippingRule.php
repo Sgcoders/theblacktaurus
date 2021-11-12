@@ -23,6 +23,8 @@ class ShippingRule extends BaseModel
         'type',
         'from',
         'to',
+        'from_date',
+        'to_date',
         'shipping_id',
     ];
 

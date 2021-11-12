@@ -120,10 +120,11 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::PICKING }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::PICKING()->label() }}</a></li>
+                                <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::SELF_COLLECT }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::SELF_COLLECT()->label() }}</a></li>
+                                <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::PENDING }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::PENDING()->label() }}</a></li>
                                 <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::DELIVERING }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::DELIVERING()->label() }}</a></li>
                                 <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::DELIVERED }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::DELIVERED()->label() }}</a></li>
-                                <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::NOT_DELIVERED }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::NOT_DELIVERED()->label() }}</a></li>
+                                <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::KIV }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::KIV()->label() }}</a></li>
                                 <li><a data-value="{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::CANCELED }}" data-target="{{ route('ecommerce.shipments.update-status', $shipment->id) }}">{{ \Botble\Ecommerce\Enums\ShippingStatusEnum::CANCELED()->label() }}</a></li>
                             </ul>
                         </div>
@@ -191,10 +192,22 @@
                                 {{ trans('plugins/ecommerce::shipping.shipping_method') }}
                             </div>
                             <div class="flexbox-grid-form-item text-end ws-nm">
-                                <label class="font-size-11px">{{ OrderHelper::getShippingMethod($shipment->order->shipping_method) }}
-                                    @if ($shipment->order->shipping_option)
-                                        ({{ $shipment->order->shipping_method_name }})
-                                    @endif
+                                <label class="font-size-11px">{{ OrderHelper::getShippingMethod($shipment->order->shipping_method, $shipment->order->shipping_option) }}
+{{--                                    @if ($shipment->order->shipping_option)--}}
+{{--                                        ({{ $shipment->order->shipping_method_name }})--}}
+{{--                                    @endif--}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="flexbox-grid-form flexbox-grid-form-no-outside-padding mb10">
+                            <div class="flexbox-grid-form-item">
+                                {{ trans('plugins/ecommerce::shipping.receive_by') }}
+                            </div>
+                            <div class="flexbox-grid-form-item text-end ws-nm">
+                                <label class="font-size-11px">{{ OrderHelper::getShippingReceiveBy($shipment->order->shipping_method, $shipment->order->shipping_option) }}
+{{--                                    @if ($shipment->order->shipping_option)--}}
+{{--                                        ({{ $shipment->order->shipping_method_name }})--}}
+{{--                                    @endif--}}
                                 </label>
                             </div>
                         </div>

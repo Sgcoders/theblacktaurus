@@ -101,15 +101,19 @@ class ShippingMethodController extends BaseController
             ->getModel()
             ->whereNull('country')
             ->join('ec_shipping_rules', 'ec_shipping_rules.shipping_id', 'ec_shipping.id')
-            ->select(['ec_shipping_rules.from', 'ec_shipping_rules.to', 'ec_shipping_rules.price'])
+            ->select(['ec_shipping_rules.from', 'ec_shipping_rules.to', 'ec_shipping_rules.price', 'ec_shipping_rules.from_date', 'ec_shipping_rules.to_date'])
             ->first();
 
         $from = 0;
         $to = null;
+        $from_date = 1;
+        $to_date = 1;
         $price = 0;
         if ($default) {
             $from = $default->from;
             $to = $default->to;
+            $from_date = $default->from_date;
+            $to_date = $default->to_date;
             $price = $default->price;
         }
 
@@ -119,6 +123,8 @@ class ShippingMethodController extends BaseController
             'price'       => $price,
             'from'        => $from,
             'to'          => $to,
+            'fromdate'   => $from_date,
+            'todate'      => $to_date,
             'shipping_id' => $shipping->id,
         ]);
 
@@ -178,9 +184,7 @@ class ShippingMethodController extends BaseController
     public function putUpdateRule($id, ShippingRuleRequest $request, BaseHttpResponse $response)
     {
         $rule = $this->shippingRuleRepository->findOrFail($id);
-
         $rule->fill($request->input());
-
         $this->shippingRuleRepository->createOrUpdate($rule);
 
         $this->shippingRuleItemRepository->deleteBy(['shipping_rule_id' => $id]);

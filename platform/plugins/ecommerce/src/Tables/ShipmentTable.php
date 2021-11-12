@@ -19,7 +19,8 @@ class ShipmentTable extends TableAbstract
     /**
      * @var bool
      */
-    protected $hasActions = true;
+    protected $hasActions = false;
+    protected $hasOperations = false;
 
     /**
      * @var bool
@@ -54,17 +55,24 @@ class ShipmentTable extends TableAbstract
             ->editColumn('checkbox', function ($item) {
                 return $this->getCheckbox($item->id);
             })
+            ->editColumn('order_id', function ($item) {
+                return Html::link(route('orders.edit', $item->order->id), get_shipment_code($item->id));
+            })
             ->editColumn('user_id', function ($item) {
                 return $item->order->user->name ?? $item->order->address->name;
             })
-//            ->editColumn('order_id', function ($item) {
-//                return Html::link(route('orders.edit', $item->order->id), get_shipment_code($item->id));
-//            })
+            ->editColumn('note', function ($item) {
+                return $item->order->address->phone;
+            })
+            ->editColumn('weight', function ($item) {
+                $html = "";
+                foreach ($item->order->products as $product) {
+                    $html .='<span class="badge badge-pill badge-primary">'.$product->product_name.' | QTY- '.$product->qty.'</span><br/>';
+                }
+                return $html;
+            })
             ->editColumn('shipping_method', function ($item) {
                 return $item->order->shipping_method_name;
-            })
-            ->editColumn('price', function ($item) {
-                return format_price($item->price) ;
             })
             ->editColumn('status', function ($item) {
                 return $item->status->label() ? $this->cClean($item->status) : '&mdash;';
@@ -74,10 +82,6 @@ class ShipmentTable extends TableAbstract
             });
 
 
-        $data = $data
-            ->addColumn('operations', function ($item) {
-                return $this->getOperations('ecommerce.shipments.edit', '', $item);
-            });
 
         return $this->toJson($data);
     }
@@ -92,7 +96,6 @@ class ShipmentTable extends TableAbstract
                 'id',
                 'order_id',
                 'status',
-                'price',
                 'created_at',
             ])
             ->with(['order'])
@@ -105,11 +108,12 @@ class ShipmentTable extends TableAbstract
         $class = 'info';
 //        exit($label);
         switch ($label){
-            case ShippingStatusEnum::DELIVERED: global $class; $class = 'success'; break;
+            case ShippingStatusEnum::DELIVERED: global $class; $class = 'primary'; break;
             case ShippingStatusEnum::DELIVERING: global $class; $class = 'warning';break;
-            case ShippingStatusEnum::NOT_DELIVERED: $class = 'danger';break;
-            case ShippingStatusEnum::PICKING: $class = 'primary';break;
-            case ShippingStatusEnum::CANCELED: $class = 'dark';break;
+            case ShippingStatusEnum::KIV: $class = 'dark';break;
+            case ShippingStatusEnum::PENDING: $class = 'secondary';break;
+            case ShippingStatusEnum::CANCELED: $class = 'danger';break;
+            case ShippingStatusEnum::APPROVED: $class = 'success';break;
         }
         return '<span class="label-'.$class.' status-label">'.$label->label().'</span>';
     }
@@ -120,26 +124,24 @@ class ShipmentTable extends TableAbstract
     public function columns()
     {
         $columns = [
-            'id'      => [
-                'title' => trans('core/base::tables.id'),
-                'width' => '20px',
-                'class' => 'text-start',
-            ],
             'user_id' => [
                 'title' => trans('plugins/ecommerce::order.customer_label'),
                 'class' => 'text-start',
             ],
-//            'order_id'  => [
-//                'title' => trans('plugins/ecommerce::order.order_id'),
-//                'class' => 'text-center',
-//            ],
-            'shipping_method'  => [
-                'name'  => 'order_id',
-                'title' => trans('plugins/ecommerce::shipping.shipping_method'),
+            'order_id'  => [
+                'title' => trans('plugins/ecommerce::order.order_id'),
                 'class' => 'text-center',
             ],
-            'price'  => [
-                'title' => trans('plugins/ecommerce::shipping.shipping_fee'),
+            'note'  => [
+                'title' => trans('plugins/ecommerce::shipping.phone'),
+                'class' => 'text-center',
+            ],
+            'weight'  => [
+                'title' => trans('plugins/ecommerce::products.name'),
+                'class' => 'text-center',
+            ],
+            'shipping_method'  => [
+                'title' => trans('plugins/ecommerce::shipping.shipping_method'),
                 'class' => 'text-center',
             ],
             'status'  => [
@@ -165,7 +167,7 @@ class ShipmentTable extends TableAbstract
     public function bulkActions(): array
     {
 //        return $this->addDeleteAction(route('shipments.deletes'), 'shipments.destroy', parent::bulkActions());
-        return parent::bulkActions();
+//        return parent::bulkActions();
     }
 
     /**

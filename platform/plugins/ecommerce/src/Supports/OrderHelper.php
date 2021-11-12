@@ -251,6 +251,32 @@ class OrderHelper
         return $name;
     }
 
+    public function getShippingReceiveBy($method, $option = null)
+    {
+        $receive_by = null;
+
+        switch ($method) {
+            default:
+                if ($option) {
+                    $rule = app(ShippingRuleInterface::class)->findById($option);
+                    if ($rule) {
+                        $from_date = $rule->from_date;
+                        $to_date = $rule->to_date;
+                        $description  = date('j F Y', strtotime("+".$from_date." day"));
+                        $description  .= ' - '.date('j F Y', strtotime("+".$to_date." day"));
+                        return $description;
+                    }
+                }
+
+                if (empty($receive_by)) {
+                    $receive_by = trans('plugins/ecommerce::order.default');
+                }
+                break;
+        }
+
+        return $receive_by;
+    }
+
     /**
      * @param OrderHistory $history
      * @return mixed
