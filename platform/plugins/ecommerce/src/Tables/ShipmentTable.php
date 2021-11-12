@@ -19,7 +19,7 @@ class ShipmentTable extends TableAbstract
     /**
      * @var bool
      */
-    protected $hasActions = false;
+    protected $hasActions = true;
     protected $hasOperations = false;
 
     /**
@@ -111,7 +111,7 @@ class ShipmentTable extends TableAbstract
             case ShippingStatusEnum::DELIVERED: global $class; $class = 'primary'; break;
             case ShippingStatusEnum::DELIVERING: global $class; $class = 'warning';break;
             case ShippingStatusEnum::KIV: $class = 'dark';break;
-            case ShippingStatusEnum::PENDING: $class = 'secondary';break;
+            case ShippingStatusEnum::PENDING: $class = 'info';break;
             case ShippingStatusEnum::CANCELED: $class = 'danger';break;
             case ShippingStatusEnum::APPROVED: $class = 'success';break;
         }
@@ -124,13 +124,13 @@ class ShipmentTable extends TableAbstract
     public function columns()
     {
         $columns = [
-            'user_id' => [
-                'title' => trans('plugins/ecommerce::order.customer_label'),
-                'class' => 'text-start',
-            ],
             'order_id'  => [
                 'title' => trans('plugins/ecommerce::order.order_id'),
                 'class' => 'text-center',
+            ],
+            'user_id' => [
+                'title' => trans('plugins/ecommerce::order.customer_label'),
+                'class' => 'text-start',
             ],
             'note'  => [
                 'title' => trans('plugins/ecommerce::shipping.phone'),
@@ -167,7 +167,7 @@ class ShipmentTable extends TableAbstract
     public function bulkActions(): array
     {
 //        return $this->addDeleteAction(route('shipments.deletes'), 'shipments.destroy', parent::bulkActions());
-//        return parent::bulkActions();
+        return parent::bulkActions();
     }
 
     /**
