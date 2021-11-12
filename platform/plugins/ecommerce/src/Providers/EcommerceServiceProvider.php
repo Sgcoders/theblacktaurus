@@ -511,7 +511,7 @@ class EcommerceServiceProvider extends ServiceProvider
                     'name'        => 'plugins/ecommerce::shipping.shipments',
                     'icon'        => 'fas fa-shipping-fast',
                     'url'         => route('ecommerce.shipments.index'),
-                    'permissions' => ['shipping_methods.index'],
+                    'permissions' => ['shipments.index'],
                 ])
                 ->registerItem([
                     'id'          => 'cms-plugins-ecommerce-shipping-provider',

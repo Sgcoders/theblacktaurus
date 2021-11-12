@@ -122,6 +122,12 @@ class ShipmentController extends BaseController
                 ]);
                 break;
             case ShippingStatusEnum::CANCELED:
+            case ShippingStatusEnum::KIV:
+
+                $order = $this->orderRepository->createOrUpdate(['status' => OrderStatusEnum::PENDING],
+                    ['id' => $shipment->order_id]);
+
+                do_action(ACTION_AFTER_ORDER_STATUS_COMPELETED_ECOMMERCE, $order, $request);
                 $this->orderHistoryRepository->createOrUpdate([
                     'action'      => 'cancel_shipment',
                     'description' => trans('plugins/ecommerce::shipping.shipping_canceled_by'),

@@ -36,7 +36,7 @@ class ShipmentTable extends TableAbstract
         parent::__construct($table, $urlGenerator);
 
         $this->repository = $shipmentRepository;
-        if (!Auth::user()->hasPermission('shipments.index')) {
+        if (!Auth::user()->hasPermission('shipments.bulk')) {
             $this->hasOperations = false;
             $this->hasActions = false;
         }
@@ -68,7 +68,7 @@ class ShipmentTable extends TableAbstract
                 }
                 return $html;
             })
-            ->editColumn('shipping_method', function ($item) {
+            ->editColumn('shipment_id', function ($item) {
                 return $item->order->shipping_method_name;
             })
             ->editColumn('status', function ($item) {
@@ -136,7 +136,7 @@ class ShipmentTable extends TableAbstract
                 'title' => trans('plugins/ecommerce::products.name'),
                 'class' => 'text-center',
             ],
-            'shipping_method'  => [
+            'shipment_id'  => [
                 'title' => trans('plugins/ecommerce::shipping.shipping_method'),
                 'class' => 'text-center',
             ],
@@ -162,8 +162,16 @@ class ShipmentTable extends TableAbstract
      */
     public function bulkActions(): array
     {
-//        return $this->addDeleteAction(route('shipments.deletes'), 'shipments.destroy', parent::bulkActions());
         return parent::bulkActions();
+//        $actions = [];
+//        if ($this->getBulkChanges()) {
+//            $actions['bulk-change'] = view('core/table::bulk-changes', [
+//                'bulk_changes' => $this->getBulkChanges(),
+//                'class'        => get_class($this),
+//                'url'          => route('ecommerce.shipments.bulk-update'),
+//            ])->render();
+//        }
+//        return $actions;
     }
 
     /**

@@ -157,13 +157,13 @@ class OrderTable extends TableAbstract
                 'title' => trans('plugins/ecommerce::order.payment_status_label'),
                 'class' => 'text-center',
             ],
-            'status'          => [
-                'title' => trans('plugins/ecommerce::order.order').' '.trans('core/base::tables.status'),
-                'class' => 'text-center',
-            ],
             'shipping_option'  => [
                 'name'  => 'payment_id',
                 'title' => trans('plugins/ecommerce::shipping.shipping_status'),
+                'class' => 'text-center',
+            ],
+            'status'          => [
+                'title' => trans('plugins/ecommerce::order.order').' '.trans('core/base::tables.status'),
                 'class' => 'text-center',
             ],
             'created_at'      => [

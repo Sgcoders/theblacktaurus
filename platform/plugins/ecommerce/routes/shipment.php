@@ -1,9 +1,9 @@
 <?php
 
 Route::group(['namespace' => 'Botble\Ecommerce\Http\Controllers', 'middleware' => ['web', 'core']], function () {
-    Route::group(['prefix' => BaseHelper::getAdminPrefix(), 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => BaseHelper::getAdminPrefix(), 'middleware' => ['auth']], function () {
         Route::group(['prefix' => 'shipments', 'as' => 'ecommerce.shipments.'], function () {
-            Route::resource('', 'ShipmentController')->parameters([])->only(['index']);
+            Route::resource('', 'ShipmentController')->parameters(['' => 'shipment'])->only(['index']);
             Route::get('edit/{id}', [
                 'as'         => 'edit',
                 'uses'       => 'ShipmentController@edit',
