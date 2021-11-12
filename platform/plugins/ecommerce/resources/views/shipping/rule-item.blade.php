@@ -28,18 +28,6 @@
                 </label>
             </td>
         </tr>
-        <tr>
-            <td>
-                <span>{{ trans('plugins/ecommerce::shipping.receive_by') }}</span>
-                <span
-                    class="from_date-value-label">{{ $rule->from_date != 0 ? $rule->from_date: trans('plugins/ecommerce::shipping.same_day') }}</span></span>&nbsp;
-
-                <span class="@if ($rule->from_date == 0) hidden @endif"> - <span
-                            class="to_date-value-label">{{$rule->to_date}}</span> {{ $rule->to_date > 1 ?
-                        trans('plugins/ecommerce::shipping.days') : trans('plugins/ecommerce::shipping.day')}}</span></span>
-            </td>
-
-        </tr>
     @endif
     <tr class="shipping-detail-information">
         <td colspan="2" class="border-none p-none-important">
