@@ -229,7 +229,7 @@ return [
     [
         'name'        => 'Bulk Change',
         'flag'        => 'shipments.bulk',
-        'parent_flag' => 'shipments.index',
+        'parent_flag' => 'ecommerce.shipments.index',
     ],
     [
         'name'        => 'Shipping rules',
