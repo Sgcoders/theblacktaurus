@@ -405,12 +405,10 @@
                                                                 <div class="timeline-dropdown" id="history-line-{{ $history->id }}">
                                                                     <table>
                                                                         <tbody>
-                                                                        @if (Arr::get($history->extras, 'refund_transaction_no'))
                                                                         <tr>
                                                                             <th>{{ trans('plugins/ecommerce::order.refund_transaction_no1') }}</th>
                                                                             <td>{{Arr::get($history->extras, 'refund_transaction_no')}}</td>
                                                                         </tr>
-                                                                        @endif
                                                                         <tr>
                                                                             <th>{{ trans('plugins/ecommerce::order.refund_date') }}</th>
                                                                             <td>{{ $history->created_at }}</td>

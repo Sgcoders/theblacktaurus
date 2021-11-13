@@ -816,7 +816,6 @@ abstract class TableAbstract extends DataTable
                 }
                 $query = $query->where($repTable . $key, $operator, $value);
         }
-
         return $query;
     }
 
