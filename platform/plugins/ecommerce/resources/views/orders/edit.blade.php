@@ -405,36 +405,34 @@
                                                                 <div class="timeline-dropdown" id="history-line-{{ $history->id }}">
                                                                     <table>
                                                                         <tbody>
+                                                                        @if (Arr::get($history->extras, 'refund_transaction_no'))
                                                                         <tr>
-                                                                            <th>{{ trans('plugins/ecommerce::order.order_number') }}</th>
-                                                                            <td><a href="{{ route('orders.edit', $order->id) }}" title="{{ get_order_code($order->id) }}">{{ get_order_code($order->id) }}</a></td>
+                                                                            <th>{{ trans('plugins/ecommerce::order.refund_transaction_no1') }}</th>
+                                                                            <td>{{Arr::get($history->extras, 'refund_transaction_no')}}</td>
+                                                                        </tr>
+                                                                        @endif
+                                                                        <tr>
+                                                                            <th>{{ trans('plugins/ecommerce::order.refund_date') }}</th>
+                                                                            <td>{{ $history->created_at }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th>{{ trans('plugins/ecommerce::order.description') }}</th>
-                                                                            <td>{{ $history->description . ' ' . trans('plugins/ecommerce::order.from') . ' ' . $order->payment->payment_channel->label() }}</td>
+                                                                            <th>{{ trans('plugins/ecommerce::order.refund_by') }}</th>
+                                                                            <td>{{ $history->user->getFullName() }}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <th>{{ trans('plugins/ecommerce::order.amount') }}</th>
                                                                             <td>{{ format_price(Arr::get($history->extras, 'amount', 0)) }}</td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <th>{{ trans('plugins/ecommerce::order.status') }}</th>
-                                                                            <td>{{ trans('plugins/ecommerce::order.successfully') }}</td>
+                                                                            <th>{{ trans('plugins/ecommerce::order.refund_products') }}</th>
+                                                                            <td>{!!Arr::get($history->extras, 'refund_products') !!}</td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <th>{{ trans('plugins/ecommerce::order.transaction_type') }}</th>
-                                                                            <td>{{ trans('plugins/ecommerce::order.refund') }}</td>
-                                                                        </tr>
-                                                                        @if ($order->payment->user->getFullName())
+                                                                        @if ($order->payment->refund_note)
                                                                             <tr>
-                                                                                <th>{{ trans('plugins/ecommerce::order.staff') }}</th>
-                                                                                <td>{{ $order->payment->user->getFullName() ? $order->payment->user->getFullName() : trans('plugins/ecommerce::order.n_a') }}</td>
+                                                                                <th>{{ trans('plugins/ecommerce::order.refund_reason1') }}</th>
+                                                                                <td>{{ $order->payment->refund_note}}</td>
                                                                             </tr>
                                                                         @endif
-                                                                        <tr>
-                                                                            <th>{{ trans('plugins/ecommerce::order.refund_date') }}</th>
-                                                                            <td>{{ $history->created_at }}</td>
-                                                                        </tr>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>

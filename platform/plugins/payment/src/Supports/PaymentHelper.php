@@ -39,7 +39,6 @@ class PaymentHelper
         ], $args);
 
         $paymentChannel = Arr::get($data, 'payment_channel', PaymentMethodEnum::COD);
-
         $orderIds = (array) $data['order_id'];
 
         return app(PaymentInterface::class)->create([

@@ -61,7 +61,7 @@ interface RepositoryInterface
      *
      * @param int $id
      * @param array $with
-     * @return mixed
+     * @return mixedf
      */
     public function findById($id, array $with = []);
 

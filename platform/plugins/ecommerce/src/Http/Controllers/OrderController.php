@@ -753,8 +753,9 @@ class OrderController extends BaseController
                         get_application_currency()),
                 ]));
         }
-
+        $refundProducts = "";
         foreach ($request->input('products', []) as $productId => $quantity) {
+
             $orderProduct = $this->orderProductRepository->getFirstBy([
                 'product_id' => $productId,
                 'order_id'   => $id,
@@ -765,6 +766,7 @@ class OrderController extends BaseController
                     ->setMessage(trans('plugins/ecommerce::order.number_of_products_invalid'));
                 break;
             }
+            $refundProducts .= '<span class="badge badge-pill badge-primary">'.$orderProduct->product_name.' | QTY- '.$quantity.'</span><br/>';
         }
 
         $response = apply_filters(ACTION_BEFORE_POST_ORDER_REFUND_ECOMMERCE, $response, $order, $request);
@@ -781,6 +783,9 @@ class OrderController extends BaseController
         }
 
         $refundAmount = $request->input('refund_amount');
+        /*
+         * turn off automatic refund
+         * commented by bestcoder19901221
         if ($paymentService = get_payment_is_support_refund_online($payment)) {
             $paymentResponse = (new $paymentService);
             if (method_exists($paymentService, 'setCurrency')) {
@@ -808,6 +813,7 @@ class OrderController extends BaseController
 
             $payment->metadata = $metadata;
         }
+        */
 
         $payment->refunded_amount += $request->input('refund_amount');
         if ($payment->refunded_amount == $payment->amount) {
@@ -844,6 +850,8 @@ class OrderController extends BaseController
                 'extras'      => json_encode([
                     'amount' => $request->input('refund_amount'),
                     'method' => $payment->payment_channel ?? PaymentMethodEnum::COD,
+                    'refund_products' => $refundProducts,
+                    'refund_transaction_no' => $request->input('refund_transaction_no'),
                 ]),
             ]);
         }

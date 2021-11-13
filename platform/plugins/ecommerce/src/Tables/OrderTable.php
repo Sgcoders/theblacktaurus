@@ -5,6 +5,7 @@ namespace Botble\Ecommerce\Tables;
 use BaseHelper;
 use Botble\Ecommerce\Enums\OrderStatusEnum;
 use Botble\Ecommerce\Repositories\Interfaces\OrderInterface;
+use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Table\Abstracts\TableAbstract;
 use EcommerceHelper;
 use Illuminate\Contracts\Routing\UrlGenerator;
@@ -99,19 +100,50 @@ class OrderTable extends TableAbstract
     {
         $query = $this->repository->getModel()
             ->select([
-                'id',
-                'status',
-                'user_id',
-                'created_at',
-                'amount',
-                'tax_amount',
-                'shipping_amount',
-                'payment_id',
+                'ec_orders.id',
+                'ec_orders.status',
+                'ec_orders.user_id',
+                'ec_orders.created_at',
+                'ec_orders.amount',
+                'ec_orders.tax_amount',
+                'ec_orders.shipping_amount',
+                'ec_orders.payment_id',
             ])
+            ->leftJoin('payments', 'ec_orders.payment_id', '=', 'payments.id')
+            ->leftJoin('ec_shipments', 'ec_orders.id', '=', 'ec_shipments.order_id')
             ->with(['user', 'payment', 'shipment'])
             ->where('is_finished', 1);
-
         return $this->applyScopes($query);
+    }
+
+
+
+
+    /**
+     * @return array
+     */
+    public function getFilters(): array
+    {
+        return [
+            'payments.status'     => [
+                'title'    => trans('plugins/ecommerce::order.payment_status_label'),
+                'type'     => 'select',
+                'choices'  => PaymentStatusEnum::labels(),
+                'validate' => 'required|in:' . implode(',', PaymentStatusEnum::values()),
+            ],
+            'ec_shipments.status'     => [
+                'title'    => trans('plugins/ecommerce::shipping.shipping_status'),
+                'type'     => 'select',
+                'choices'  => ShippingStatusEnum::labels(),
+                'validate' => 'required|in:' . implode(',', ShippingStatusEnum::values()),
+            ],
+            'ec_orders.status'     => [
+                'title'    => trans('plugins/ecommerce::order.order').' '.trans('core/base::tables.status'),
+                'type'     => 'select',
+                'choices'  => OrderStatusEnum::labels(),
+                'validate' => 'required|in:' . implode(',', OrderStatusEnum::values()),
+            ],
+        ];
     }
 
     /**
@@ -210,6 +242,7 @@ class OrderTable extends TableAbstract
             ],
         ];
     }
+
 
     /**
      * {@inheritDoc}

@@ -19,7 +19,7 @@ class CodPaymentService implements ProduceServiceInterface
         $chargeId = Str::upper(Str::random(10));
 
         $orderIds = (array)$request->input('order_id', []);
-
+//        var_dump(PaymentMethodEnum::COD);exit;
         do_action(PAYMENT_ACTION_PAYMENT_PROCESSED, [
             'amount'          => $request->input('amount'),
             'currency'        => $request->input('currency'),

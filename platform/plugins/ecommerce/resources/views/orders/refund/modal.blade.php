@@ -108,17 +108,20 @@
                         <tbody>
                         <tr>
                             <td class="p-xs">
-                                <label class="ws-nm mb0">
-                                    <i class="fa-cash-small"></i>
-                                    <span class="ml5 v-a-t">{{ $order->payment->payment_channel->label() }}</span>
+{{--                                <label class="ws-nm mb0">--}}
+{{--                                    <i class="fa-cash-small"></i>--}}
+{{--                                    <span class="ml5 v-a-t">{{ $order->payment->payment_channel->label() }}</span>--}}
+{{--                                </label>--}}
+{{--                                @if (get_payment_is_support_refund_online($order->payment))--}}
+{{--                                    <label class="help-block d-block">--}}
+{{--                                        {{ trans('plugins/ecommerce::order.payment_method_refund_automatic', [--}}
+{{--                                            'method' => $order->payment->payment_channel->label()--}}
+{{--                                        ]) }}--}}
+{{--                                    </label>--}}
+{{--                                @endif--}}
+                                <label class="help-block d-block">
+                                        {{ trans('plugins/ecommerce::order.payment_method_refund_manually') }}
                                 </label>
-                                @if (get_payment_is_support_refund_online($order->payment))
-                                    <label class="help-block d-block">
-                                        {{ trans('plugins/ecommerce::order.payment_method_refund_automatic', [
-                                            'method' => $order->payment->payment_channel->label()
-                                        ]) }}
-                                    </label>
-                                @endif
                             </td>
                             <td class="p-xs width-150-px">
                                 <div class="next-input--stylized">
@@ -139,6 +142,14 @@
             <label class="text-title-field" for="refund-note">{{ trans('plugins/ecommerce::order.refund_reason') }}</label>
             <div>
                 <input type="text" class="next-input" name="refund_note" id="refund-note" value="{{ $order->payment->refund_note }}">
+            </div>
+        </div>
+    </div>
+    <div class="next-form-grid">
+        <div class="next-form-grid-cell">
+            <label class="text-title-field" for="refund-transaction-no">{{ trans('plugins/ecommerce::order.refund_transaction_no') }}</label>
+            <div>
+                <input type="text" class="next-input" name="refund_transaction_no" id="refund-transaction-no" value="">
             </div>
         </div>
     </div>

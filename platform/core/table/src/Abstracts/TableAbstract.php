@@ -763,7 +763,6 @@ abstract class TableAbstract extends DataTable
                 ];
             }
         }
-
         foreach ($requestFilters as $requestFilter) {
             if (isset($requestFilter['column']) && !empty($requestFilter['column'])) {
                 $query = $this->applyFilterCondition(
@@ -787,8 +786,9 @@ abstract class TableAbstract extends DataTable
      */
     public function applyFilterCondition($query, string $key, string $operator, ?string $value)
     {
-        if (strpos($key, '.') !== -1) {
-            $key = Arr::last(explode('.', $key));
+        $repTable = '';
+        if (strpos($key, '.') == -1) {
+            $repTable = $this->repository->getTable() .'.';
         }
 
         switch ($key) {
@@ -799,7 +799,7 @@ abstract class TableAbstract extends DataTable
                 }
 
                 $value = BaseHelper::formatDate($value);
-                $query = $query->whereDate($this->repository->getTable() . '.' . $key, $operator, $value);
+                $query = $query->whereDate($repTable . $key, $operator, $value);
                 break;
             default:
                 if (!$value) {
@@ -807,14 +807,14 @@ abstract class TableAbstract extends DataTable
                 }
 
                 if ($operator === 'like') {
-                    $query = $query->where($this->repository->getTable() . '.' . $key, $operator, '%' . $value . '%');
+                    $query = $query->where($repTable . $key, $operator, '%' . $value . '%');
                     break;
                 }
 
                 if ($operator !== '=') {
                     $value = (float)$value;
                 }
-                $query = $query->where($this->repository->getTable() . '.' . $key, $operator, $value);
+                $query = $query->where($repTable . $key, $operator, $value);
         }
 
         return $query;

@@ -190,7 +190,7 @@ return [
     'confirm_payment_is_paid_for_this_order'                                                                                => 'Confirm payment is paid for this order',
     'payment_status_of_the_order_is_paid_once_the_order_has_been_created_you_cannot_change_the_payment_method_or_status'    => 'Payment status of the order is Paid. Once the order has been created, you cannot change the payment method or status',
     'select_payment_method'                                                                                                 => 'Select payment method',
-    'cash_on_delivery_cod'                                                                                                  => 'Cash on delivery (COD)',
+    'cash_on_delivery_cod'                                                                                                  => 'Self Collect',
     'bank_transfer'                                                                                                         => 'Bank transfer',
     'paid_amount'                                                                                                           => 'Paid amount',
     'confirm_that_payment_for_this_order_will_be_paid_later'                                                                => 'Confirm that payment for this order will be paid later',

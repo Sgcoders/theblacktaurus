@@ -166,9 +166,8 @@ abstract class Enum implements JsonSerializable
             static::$langPath,
             $value
         );
-
+//        return static::$langPath;
         $label = Lang::has($key) ? trans($key) : $value;
-
         return apply_filters(BASE_FILTER_ENUM_LABEL, $label, get_called_class());
     }
 
