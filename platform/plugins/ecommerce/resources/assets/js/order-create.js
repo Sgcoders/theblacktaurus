@@ -14,6 +14,10 @@ Vue.prototype.__ = key => {
     return _.get(window.trans, key, key);
 };
 
+Vue.prototype.payment_cod_name = () => {
+    return window.payment_cod_name;
+};
+
 Vue.filter('formatPrice', function (value) {
     return parseFloat(value).toFixed(2);
 })

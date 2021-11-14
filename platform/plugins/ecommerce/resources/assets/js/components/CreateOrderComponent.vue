@@ -715,7 +715,7 @@
             <p>{{ __('order.Select payment method') }}</p>
             <div class="ui-select-wrapper mb15 next-input--is-focused">
                 <select class="ui-select" v-model="child_payment_method">
-                    <option value="cod">{{ __('order.cash_on_delivery_cod') }}</option>
+                    <option value="cod">{{ payment_cod_name() }}</option>
                     <option value="bank_transfer">{{ __('order.bank_transfer') }}</option>
                 </select>
                 <svg class="svg-next-icon svg-next-icon-size-16">
@@ -734,7 +734,7 @@
             </p>
             <div class="ui-select-wrapper mb15 next-input--is-focused">
                 <select class="ui-select" v-model="child_payment_method">
-                    <option value="cod">{{ __('order.cash_on_delivery_cod') }}</option>
+                    <option value="cod">{{ payment_cod_name() }}</option>
                     <option value="bank_transfer">{{ __('order.bank_transfer') }}</option>
                 </select>
                 <svg class="svg-next-icon svg-next-icon-size-16">

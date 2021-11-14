@@ -10,6 +10,7 @@
         'use strict';
 
         window.trans = window.trans || {};
+        window.payment_cod_name = JSON.parse('{!! addslashes(json_encode(setting('payment_cod_name', 'cod'))) !!}');
 
         window.trans.order = JSON.parse('{!! addslashes(json_encode(trans('plugins/ecommerce::order'))) !!}');
     </script>

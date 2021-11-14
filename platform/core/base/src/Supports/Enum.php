@@ -5,6 +5,7 @@ namespace Botble\Base\Supports;
 use BadMethodCallException;
 use JsonSerializable;
 use Lang;
+use Botble\Payment\Enums\PaymentMethodEnum;
 use Log;
 use ReflectionClass;
 use ReflectionException;
@@ -167,6 +168,9 @@ abstract class Enum implements JsonSerializable
             $value
         );
 //        return static::$langPath;
+        if($value == PaymentMethodEnum::COD()){
+            return setting('payment_cod_name', $value);
+        }
         $label = Lang::has($key) ? trans($key) : $value;
         return apply_filters(BASE_FILTER_ENUM_LABEL, $label, get_called_class());
     }
