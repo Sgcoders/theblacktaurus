@@ -324,3 +324,6 @@ a.logo img{height:80px; margin:0; display:inline-block;}
 
 }
 
+#indxproductsale .item div, .ps-product div {
+    padding: 10px 0;
+}
