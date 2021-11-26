@@ -823,7 +823,6 @@ class Theme implements ThemeContract
         if ($this->view->exists($path)) {
             return $this->setUpContent($path, $args);
         }
-
         if (!empty($default)) {
             return $this->of($default, $args);
         }

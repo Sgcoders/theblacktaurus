@@ -43,7 +43,7 @@ class PublicController extends Controller
         }
 
         $result = apply_filters(BASE_FILTER_PUBLIC_SINGLE_DATA, $slug);
-
+//        print_r($result);exit();
         if (isset($result['slug']) && $result['slug'] !== $key) {
             return redirect()->route('public.single', $result['slug']);
         }
@@ -69,12 +69,10 @@ class PublicController extends Controller
 
                 if ($slug) {
                     $data = (new PageService)->handleFrontRoutes($slug);
-
                     return Theme::scope($data['view'], $data['data'], $data['default_view'])->render();
                 }
             }
         }
-
         SeoHelper::setTitle(theme_option('site_title'));
 
         Theme::breadcrumb()->add(__('Home'), route('public.index'));

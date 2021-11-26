@@ -69,10 +69,10 @@ Vue.directive('carousel', {
             dataItemXL = el.data('owl-item-xl'),
             dataNavLeft = el.data('owl-nav-left')
                 ? el.data('owl-nav-left')
-                : "<i class='icon-chevron-left'></i>",
+                : "<i class='fas fa-angle-left'></i>",
             dataNavRight = el.data('owl-nav-right')
                 ? el.data('owl-nav-right')
-                : "<i class='icon-chevron-right'></i>",
+                : "<i class='fas fa-angle-right'></i>",
             duration = el.data('owl-duration'),
             datamouseDrag = el.data('owl-mousedrag') === 'on';
 

@@ -404,6 +404,7 @@ class OrderHelper
         /**
          * Add cart to session
          */
+
         Cart::instance('cart')->add(
             $product->id,
             $parentProduct->name,

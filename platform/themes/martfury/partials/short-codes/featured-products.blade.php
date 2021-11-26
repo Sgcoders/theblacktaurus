@@ -1,12 +1,12 @@
-<div class="ps-product-list mt-40 mb-40">
-    <div class="ps-container">
-        <div class="ps-section__header">
-            <h3>{!! clean($title) !!}</h3>
-            <ul class="ps-section__links">
-                <li><a href="{{ route('public.products') }}">{{ __('View All') }}</a></li>
-            </ul>
-        </div>
+<div class="latestproduct-area">
+    <div class="container">
+            <h2 class="main-heading wow fadeInUp animated">{!! clean($title) !!}</h2>
+{{--            <ul class="ps-section__links">--}}
+{{--                <li><a href="{{ route('public.products') }}">{{ __('View All') }}</a></li>--}}
+{{--            </ul>--}}
+        <div id="indxproductsale" class="owl-theme wow fadeInUp animated">
         <featured-products-component url="{{ route('public.ajax.featured-products') }}" limit="{{ $limit }}"></featured-products-component>
+        </div>
     </div>
 </div>
 

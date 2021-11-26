@@ -7,7 +7,9 @@ register_page_template([
     'blog-sidebar' => __('Blog Sidebar'),
     'full-width'   => __('Full width'),
     'homepage'     => __('Homepage'),
-    'coming-soon'  => __('Coming soon'),
+    'about-us'  => __('About Us'),
+    'retail'  => __('Retail'),
+    'contact-us'  => __('Contact Us')
 ]);
 
 register_sidebar([

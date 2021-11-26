@@ -6,23 +6,23 @@
                 <div class="circle circle-2"></div>
             </div>
         </div>
-        <div v-if="!isLoading" v-carousel v-bind:id="id" class="ps-carousel--responsive owl-slider"
-             data-owl-auto="true"
-             data-owl-loop="false"
+        <div v-if="!isLoading" v-carousel v-bind:id="id" class="owl-slider"
+             data-owl-auto="false"
+             data-owl-loop="true"
              data-owl-speed="10000"
-             data-owl-gap="0"
-             data-owl-nav="false"
-             data-owl-dots="true"
-             data-owl-item="7"
-             data-owl-item-xs="2"
+             data-owl-gap="20"
+             data-owl-nav="true"
+             data-owl-dots="false"
+             data-owl-item="4"
+             data-owl-item-xs="1"
              data-owl-item-sm="2"
-             data-owl-item-md="3"
-             data-owl-item-lg="4"
-             data-owl-item-xl="6"
+             data-owl-item-md="2"
+             data-owl-item-lg="3"
+             data-owl-item-xl="4"
              data-owl-duration="1000"
              data-owl-mousedrag="on"
         >
-            <div class="ps-product" v-for="item in data" :key="item.id" v-if="data.length" v-html="item"></div>
+            <div class="item" v-for="item in data" :key="item.id" v-if="data.length" v-html="item"></div>
         </div>
     </div>
 </template>
@@ -52,6 +52,7 @@
         },
         mounted() {
           this.getProducts();
+          console.log('mounted');
         },
         methods: {
             getProducts() {

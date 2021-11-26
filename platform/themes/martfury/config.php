@@ -37,10 +37,11 @@ return [
         'beforeRenderTheme' => function (Theme $theme) {
             // You may use this event to set up your assets.
 
-            $version = '1.14.5';
+            $version = '1.14.5'.time();
 
             $theme->asset()->usePath()->add('linearicons', 'fonts/Linearicons/Linearicons/Font/demo-files/demo.css');
             $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/css/bootstrap.min.css');
+            $theme->asset()->usePath()->add('animate-css', 'plugins/animate.css');
             $theme->asset()->usePath()->add('owl-carousel-css', 'plugins/owl-carousel/assets/owl.carousel.min.css');
             $theme->asset()->usePath()
                 ->add('owl-carousel-theme-css', 'plugins/owl-carousel/assets/owl.theme.default.min.css');
@@ -50,8 +51,9 @@ return [
             $theme->asset()->usePath()
                 ->add('jquery-bar-rating-css', 'plugins/jquery-bar-rating/themes/fontawesome-stars.css');
             $theme->asset()->usePath()->add('select2-css', 'plugins/select2/css/select2.min.css');
-            $theme->asset()->usePath()->add('fontawesome', 'plugins/font-awesome/css/font-awesome.min.css');
+            $theme->asset()->usePath()->add('fontawesome', 'plugins/font-awesome/css/all.css');
             $theme->asset()->usePath()->add('style', 'css/style.css', [], [], $version);
+            $theme->asset()->usePath()->add('homepage', 'css/homepage.css', [], [], $version.microtime());
 
             if (BaseHelper::siteLanguageDirection() == 'rtl') {
                 $theme->asset()->usePath()->add('rtl', 'css/rtl.css', [], [], $version);
@@ -63,6 +65,8 @@ return [
             $theme->asset()->container('footer')->usePath()->add('popper-js', 'plugins/popper.min.js', ['jquery']);
             $theme->asset()->container('footer')->usePath()
                 ->add('owl-carousel-js', 'plugins/owl-carousel/owl.carousel.min.js', ['jquery']);
+            $theme->asset()->container('footer')->usePath()
+                ->add('wow-js', 'plugins/wow.min.js', ['jquery']);
             $theme->asset()->container('footer')->usePath()
                 ->add('bootstrap-js', 'plugins/bootstrap/js/bootstrap.min.js', ['jquery']);
             $theme->asset()->container('footer')->usePath()

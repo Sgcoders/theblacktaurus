@@ -1,5 +1,4 @@
 <?php
-
 namespace Theme\Martfury\Http\Controllers;
 
 use Botble\Base\Enums\BaseStatusEnum;
@@ -152,7 +151,6 @@ class MartfuryController extends PublicController
         if (!$request->ajax() || !$request->wantsJson()) {
             return $response->setNextUrl(route('public.index'));
         }
-
         $data = [];
 
         $withCount = [];
@@ -178,6 +176,28 @@ class MartfuryController extends PublicController
 
         foreach ($products as $product) {
             $data[] = Theme::partial('product-item', compact('product'));
+        }
+
+        return $response->setData($data);
+    }
+    /**
+     * @param Request $request
+     * @param BaseHttpResponse $response
+     * @return BaseHttpResponse
+     */
+    public function ajaxGetFeaturedProductsLink(Request $request, BaseHttpResponse $response)
+    {
+        if (!$request->ajax() || !$request->wantsJson()) {
+            return $response->setNextUrl(route('public.index'));
+        }
+        $data = '';
+
+        $products = get_featured_products([
+            'take'      => (int) $request->input('limit', 10),
+        ]);
+
+        foreach ($products as $product) {
+            $data .= '<li><i class="fas fa-caret-right"></i><a href="'.$product->url.'">'.$product->name.'</a></li>';
         }
 
         return $response->setData($data);

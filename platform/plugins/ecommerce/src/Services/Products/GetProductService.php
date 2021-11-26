@@ -42,8 +42,9 @@ class GetProductService
         array $with = [],
         array $withCount = [],
         array $conditions = []
-    ) {
-        $num = (int) $request->input('num');
+    )
+    {
+        $num = (int)$request->input('num');
         $shows = EcommerceHelper::getShowParams();
 
         if (!array_key_exists($num, $shows)) {
@@ -51,16 +52,16 @@ class GetProductService
         }
 
         $queryVar = [
-            'keyword'     => $request->input('q'),
-            'brands'      => (array)$request->input('brands', []),
-            'categories'  => (array)$request->input('categories', []),
-            'tags'        => (array)$request->input('tags', []),
+            'keyword' => $request->input('q'),
+            'brands' => (array)$request->input('brands', []),
+            'categories' => (array)$request->input('categories', []),
+            'tags' => (array)$request->input('tags', []),
             'collections' => (array)$request->input('collections', []),
-            'attributes'  => (array)$request->input('attributes', []),
-            'max_price'   => $request->input('max_price'),
-            'min_price'   => $request->input('min_price'),
-            'sort_by'     => $request->input('sort-by'),
-            'num'         => $num,
+            'attributes' => (array)$request->input('attributes', []),
+            'max_price' => $request->input('max_price'),
+            'min_price' => $request->input('min_price'),
+            'sort_by' => $request->input('sort-by'),
+            'num' => $num,
         ];
 
         if ($category) {
@@ -136,42 +137,80 @@ class GetProductService
                 break;
             default:
                 $orderBy = [
-                    'ec_products.order'      => 'ASC',
+                    'ec_products.order' => 'ASC',
                     'ec_products.created_at' => 'DESC',
                 ];
                 break;
         }
 
         $params = [
-            'paginate'  => [
-                'per_page'      => $queryVar['num'],
+            'paginate' => [
+                'per_page' => $queryVar['num'],
                 'current_paged' => (int)$request->query('page', 1),
             ],
-            'with'      => $with,
+            'with' => $with,
             'withCount' => $withCount,
         ];
 
         if (!empty($conditions)) {
             $params['condition'] = array_merge([
-                'ec_products.status'       => BaseStatusEnum::PUBLISHED,
+                'ec_products.status' => BaseStatusEnum::PUBLISHED,
                 'ec_products.is_variation' => 0,
             ], $conditions);
         }
 
         $products = $this->productRepository->filterProducts(
             [
-                'keyword'                => $queryVar['keyword'],
-                'min_price'              => $queryVar['min_price'],
-                'max_price'              => $queryVar['max_price'],
-                'categories'             => $queryVar['categories'],
-                'tags'                   => $queryVar['tags'],
-                'collections'            => $queryVar['collections'],
-                'brands'                 => $queryVar['brands'],
-                'attributes'             => $queryVar['attributes'],
+                'keyword' => $queryVar['keyword'],
+                'min_price' => $queryVar['min_price'],
+                'max_price' => $queryVar['max_price'],
+                'categories' => $queryVar['categories'],
+                'tags' => $queryVar['tags'],
+                'collections' => $queryVar['collections'],
+                'brands' => $queryVar['brands'],
+                'attributes' => $queryVar['attributes'],
                 'count_attribute_groups' => $countAttributeGroups,
-                'order_by'               => $orderBy,
+                'order_by' => $orderBy,
             ],
-            $params,
+            $params
+        );
+
+        return $products;
+    }
+
+    public function getProduct1()
+    {
+        $num = (int)theme_option('number_of_products_per_page', 12);
+
+        $queryVar = [
+            'num' => $num,
+        ];
+
+                $orderBy = [
+                    'ec_products.order' => 'ASC',
+                    'ec_products.created_at' => 'DESC',
+                ];
+
+        $params = [
+            'paginate' => [
+                'per_page' => $queryVar['num'],
+                'current_paged' => 1
+            ],
+            'with' => [],
+            'withCount' => 0,
+        ];
+
+            $params['condition'] = [
+                'ec_products.status' => BaseStatusEnum::PUBLISHED,
+                'ec_products.is_variation' => 0,
+            ];
+
+        $products = $this->productRepository->filterProducts(
+            [
+                'order_by' => $orderBy,
+                'collections' => []
+            ],
+            $params
         );
 
         return $products;

@@ -19,6 +19,8 @@ Route::group(['namespace' => 'Theme\Martfury\Http\Controllers', 'middleware' => 
 
         Route::get('ajax/featured-products', 'MartfuryController@ajaxGetFeaturedProducts')
             ->name('public.ajax.featured-products');
+        Route::get('ajax/featured-products-link', 'MartfuryController@ajaxGetFeaturedProductsLink')
+            ->name('public.ajax.featured-products-link');
 
         Route::get('ajax/top-rated-products', 'MartfuryController@ajaxGetTopRatedProducts')
             ->name('public.ajax.top-rated-products');

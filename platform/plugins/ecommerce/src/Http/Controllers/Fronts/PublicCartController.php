@@ -53,9 +53,10 @@ class PublicCartController extends Controller
                 ->setMessage(__('This product is out of stock or not exists!'));
         }
 
-        if ($product->variations->count() > 0 && !$product->is_variation) {
-            $product = $product->defaultVariation->product;
-        }
+//        print_r($product->defaultVariation->product);exit();
+//        if ($product->variations->count() > 0 && !$product->is_variation) {
+//            $product = $product->defaultVariation->product;
+//        }
 
         if ($product->isOutOfStock()) {
             return $response
@@ -64,7 +65,6 @@ class PublicCartController extends Controller
         }
 
         $maxQuantity = $product->quantity;
-
         if (!$product->canAddToCart($request->input('qty', 1))) {
             return $response
                 ->setError()
@@ -94,7 +94,6 @@ class PublicCartController extends Controller
                 ->setError()
                 ->setMessage(__('Product :product is out of stock!', ['product' => $product->original_product->name]));
         }
-
         $cartItems = OrderHelper::handleAddCart($product, $request);
 
         $token = OrderHelper::getOrderSessionToken();

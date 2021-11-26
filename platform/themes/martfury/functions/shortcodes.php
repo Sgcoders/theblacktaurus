@@ -25,6 +25,7 @@ app()->booted(function () {
             return Theme::partial('short-codes.featured-product-categories-admin-config', compact('attributes'));
         });
 
+
         add_shortcode('featured-products', __('Featured products'), __('Featured products'), function ($shortCode) {
             return Theme::partial('short-codes.featured-products', [
                 'title' => $shortCode->title,
@@ -32,7 +33,18 @@ app()->booted(function () {
             ]);
         });
 
+
+        add_shortcode('latest-products', __('Latest products'), __('Latest products'), function ($shortCode) {
+            return Theme::partial('short-codes.featured-products', [
+                'title' => $shortCode->title,
+                'limit' => $shortCode->limit,
+            ]);
+        });
         shortcode()->setAdminConfig('featured-products', function ($attributes) {
+            return Theme::partial('short-codes.featured-products-admin-config', compact('attributes'));
+        });
+
+        shortcode()->setAdminConfig('latest-products', function ($attributes) {
             return Theme::partial('short-codes.featured-products-admin-config', compact('attributes'));
         });
 

@@ -130,7 +130,7 @@ if (!function_exists('get_featured_products')) {
     {
         $params = array_merge([
             'condition' => [
-                'ec_products.is_featured'  => 1,
+//                'ec_products.is_featured'  => 1,
                 'ec_products.is_variation' => 0,
                 'ec_products.status'       => BaseStatusEnum::PUBLISHED,
             ],
@@ -141,7 +141,6 @@ if (!function_exists('get_featured_products')) {
             'select'    => ['ec_products.*'],
             'with'      => [],
         ], $params);
-
         return app(ProductInterface::class)->advancedGet($params);
     }
 }
