@@ -25,7 +25,6 @@ class LocaleSessionRedirect extends LaravelLocalizationMiddlewareBase
         }
 
         $params = explode('/', $request->path());
-
         session(['language' => Language::getDefaultLocale()]);
         app()->setLocale(session('language'));
 

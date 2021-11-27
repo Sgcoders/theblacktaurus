@@ -1,10 +1,10 @@
 @if ($flashSale)
-    <div class="ps-deal-of-day">
+    <div class="ps-deal-of-day container wow fadeInUp animated">
         <div class="ps-container">
             <div class="ps-section__header">
                 <div class="ps-block--countdown-deal">
                     <div class="ps-block__left">
-                        <h3>{!! isset($title) ? clean($title) : $flashSale->name !!}</h3>
+                        <h3 class="main-heading">{!! isset($title) ? clean($title) : $flashSale->name !!}</h3>
                     </div>
                     <div class="ps-block__right">
                         <figure>

@@ -459,7 +459,6 @@ class PublicProductController
         }
 
         $category = $categoryRepository->getFirstBy($condition, ['*'], ['slugable']);
-
         if (!$category) {
             abort(404);
         }
@@ -467,7 +466,6 @@ class PublicProductController
         if ($category->slugable->key !== $slug->key) {
             return redirect()->to($category->url);
         }
-
         $withCount = [];
         if (EcommerceHelper::isReviewEnabled()) {
             $withCount = [
@@ -493,7 +491,6 @@ class PublicProductController
         $request->merge(['categories' => $category->getChildrenIds($category, [$category->id])]);
 
         $products = $getProductService->getProduct($request, null, null, $with, $withCount);
-
         SeoHelper::setTitle($category->name)->setDescription($category->description);
 
         $meta = new SeoOpenGraph;

@@ -18,7 +18,7 @@
 
 
 <div class="nav-holder" id="SnackIt">
-    <h2>{{ __('SNACK BASES') }}</h2>
+    <h2 class="text-uppercase">{{ __('Snack Bases') }}</h2>
     <div class="nav-holderinner">
         <div class="nav flex-column nav-pills ps-list--categories" id="v-pills-tab" role="tablist"
              aria-orientation="vertical">
@@ -29,7 +29,7 @@
                 <a class="nav-link
                     @if ($urlCurrent == str_replace('product-categories/', '', $category->url)
                     || (!empty($categoriesRequest && in_array($category->id, $categoriesRequest)))) active @endif"
-                   href="{{$category->url}}">
+                   href="{{str_replace(Language::getCurrentLocale() != Language::getDefaultLocale() ? Language::getCurrentLocale().'/' : '', '', $category->url)}}">
                     <i class="fas fa-caret-right"></i>{{ $category->name }}</a>
                 @if ($category->children->count())
                     @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.sub-categories', ['children' => $category->children])

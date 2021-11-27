@@ -270,6 +270,7 @@
     "Login with social networks": "Login with social networks",
     "Logo": "Logo",
     "Logout": "Logout",
+    "Header-Msg": "Enjoy free shipping across Singapore. Limited period offer.. Hurry!!!",
     "Maintenance mode": "Maintenance mode",
     "Menu": "Menu",
     "Merchant Email": "Merchant Email",
@@ -636,5 +637,6 @@
     "reviews": "reviews",
     "to": "to",
     "to write review!": "to write review!",
-    "when shipping fee less than or equal": "when shipping fee less than or equal"
+    "when shipping fee less than or equal": "when shipping fee less than or equal",
+    "Get Insider": "Get insider access to new products and promotions."
 }

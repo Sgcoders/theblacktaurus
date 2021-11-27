@@ -144,15 +144,15 @@ class MartfuryController extends PublicController
     /**
      * @param Request $request
      * @param BaseHttpResponse $response
+     * @param FlashSaleInterface $flashSaleRepository
      * @return BaseHttpResponse
      */
-    public function ajaxGetFeaturedProducts(Request $request, BaseHttpResponse $response)
+    public function ajaxGetFeaturedProducts(Request $request, BaseHttpResponse $response, FlashSaleInterface $flashSaleRepository)
     {
         if (!$request->ajax() || !$request->wantsJson()) {
             return $response->setNextUrl(route('public.index'));
         }
         $data = [];
-
         $withCount = [];
         if (EcommerceHelper::isReviewEnabled()) {
             $withCount = [
@@ -173,7 +173,6 @@ class MartfuryController extends PublicController
             ],
             'withCount' => $withCount,
         ]);
-
         foreach ($products as $product) {
             $data[] = Theme::partial('product-item', compact('product'));
         }

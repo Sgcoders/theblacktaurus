@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-12 ">
                     <div class="form-group">
-                        <textarea class="form-control" name="content" rows="6" minlength="10"
+                    <textarea class="form-control" name="content" rows="6" minlength="10"
                                   placeholder="{{ __('Message') }} *" required></textarea>
                     </div>
                 </div>

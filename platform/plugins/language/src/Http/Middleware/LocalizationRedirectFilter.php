@@ -47,7 +47,6 @@ class LocalizationRedirectFilter extends LaravelLocalizationMiddlewareBase
                     $redirection = Language::getLocalizedURL(session('language'), $request->fullUrl());
                 }
             }
-
             if ($redirection) {
                 // Save any flashed data for redirect
                 app('session')->reflash();

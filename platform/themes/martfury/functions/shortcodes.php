@@ -24,8 +24,6 @@ app()->booted(function () {
         shortcode()->setAdminConfig('featured-product-categories', function ($attributes) {
             return Theme::partial('short-codes.featured-product-categories-admin-config', compact('attributes'));
         });
-
-
         add_shortcode('featured-products', __('Featured products'), __('Featured products'), function ($shortCode) {
             return Theme::partial('short-codes.featured-products', [
                 'title' => $shortCode->title,
@@ -204,11 +202,14 @@ app()->booted(function () {
         return Theme::partial('short-codes.site-features-admin-config', compact('attributes'));
     });
 
-    if (is_plugin_active('contact')) {
-        add_filter(CONTACT_FORM_TEMPLATE_VIEW, function () {
-            return Theme::getThemeNamespace() . '::partials.short-codes.contact-form';
-        }, 120);
-    }
+//    if (is_plugin_active('contact')) {
+//        add_filter(CONTACT_FORM_TEMPLATE_VIEW, function () {
+//            return Theme::getThemeNamespace() . '::partials.short-codes.contact-form';
+//        }, 120);
+//    }
+     add_shortcode('contact-form', __('Contact Form'), __('Contact Form'), function ($shortcode) {
+        return '<div class="contact-form-shortcode"></div>';
+    });
 
     add_shortcode('contact-info-boxes', __('Contact info boxes'), __('Contact info boxes'), function ($shortCode) {
         return Theme::partial('short-codes.contact-info-boxes', ['title' => $shortCode->title]);

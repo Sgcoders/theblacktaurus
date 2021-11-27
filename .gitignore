@@ -1,3 +1,4 @@
+/bootstrap/cache
 /node_modules
 /public/hot
 /public/storage
@@ -11,6 +12,8 @@ Thumbs.db
 /.idea
 /.vscode
 /.vagrant
+/vendor1
+/platform/plugins/contact1
 Homestead.json
 Homestead.yaml
 npm-debug.log
@@ -39,6 +42,7 @@ resources/docs
 .phpunit.result.cache
 /storage/.license
 /storage/fonts
+/platform/themes/
 
 /log
 

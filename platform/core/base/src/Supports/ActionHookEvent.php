@@ -26,7 +26,6 @@ abstract class ActionHookEvent
         while (isset($this->listeners[$hook][$priority])) {
             $priority += 1;
         }
-
         $this->listeners[$hook][$priority] = compact('callback', 'arguments');
     }
 

@@ -7,8 +7,7 @@ register_page_template([
     'blog-sidebar' => __('Blog Sidebar'),
     'full-width'   => __('Full width'),
     'homepage'     => __('Homepage'),
-    'about-us'  => __('About Us'),
-    'retail'  => __('Retail'),
+    'menu-pages'  => __('Menu Pages'),
     'contact-us'  => __('Contact Us')
 ]);
 

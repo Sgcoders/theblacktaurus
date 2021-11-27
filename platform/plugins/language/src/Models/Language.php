@@ -40,7 +40,6 @@ class Language extends BaseModel
     protected static function boot()
     {
         parent::boot();
-
         self::deleted(function (Language $language) {
             $defaultLanguage = self::where('lang_is_default', 1)->first();
 

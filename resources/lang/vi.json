@@ -265,6 +265,7 @@
     "Login with social networks": "Đăng nhập thông qua mạng xã hội",
     "Logo": "Logo",
     "Logout": "Đăng xuất",
+    "Header-Msg": "Tận hưởng giao hàng miễn phí trên khắp Singapore. Ưu đãi trong thời gian có hạn .. Nhanh lên !!!",
     "Maintenance mode": "Maintenance mode",
     "Menu": "Menu",
     "Merchant Email": "Merchant Email",
@@ -631,5 +632,9 @@
     "reviews": "đánh giá",
     "to": "to",
     "to write review!": "để viết đánh giá!",
-    "when shipping fee less than or equal": "when shipping fee less than or equal"
+    "when shipping fee less than or equal": "when shipping fee less than or equal",
+    "Explore": "Khám phá",
+    "Newsletter": "Bản tin",
+    "Get Insider": "Nhận quyền truy cập nội bộ vào các sản phẩm và chương trình khuyến mãi mới.",
+    "Snack Bases": "Ăn nhẹ"
 }

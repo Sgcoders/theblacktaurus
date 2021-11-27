@@ -21,5 +21,5 @@ mix
 
     .js(source + '/assets/js/marketplace.js', dist + '/js')
 
-    .copyDirectory(dist + '/css', source + '/public/css')
-    .copyDirectory(dist + '/js', source + '/public/js');
+    // .copyDirectory(dist + '/css', source + '/public/css')
+    // .copyDirectory(dist + '/js', source + '/public/js');

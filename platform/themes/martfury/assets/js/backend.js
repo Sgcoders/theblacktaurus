@@ -804,7 +804,7 @@
                             success: response => {
                                 if (!response.error) {
                                     $('.ps-cart--mobile').html(response.data.html);
-                                    $('.btn-shopping-cart span').text(response.data.count);
+                                    $('.btn-shopping-cart span i').text(response.data.count);
                                 }
                             }
                         });

@@ -1102,13 +1102,10 @@ class LanguageManager
             // If the locale has not been passed through the function
             // it tries to get it from the first segment of the url
             $locale = $this->request->segment(1);
-
             $localeFromRequest = $this->request->input('language');
-
             if ($localeFromRequest && array_key_exists($localeFromRequest, $this->supportedLocales)) {
                 $locale = $localeFromRequest;
             }
-
             if (!$locale) {
                 $locale = $this->getForcedLocale();
             }
@@ -1135,7 +1132,6 @@ class LanguageManager
                 $this->currentLocale = $this->getCurrentLocale();
             }
         }
-
         $this->app->setLocale($this->currentLocale);
 
         return $locale;

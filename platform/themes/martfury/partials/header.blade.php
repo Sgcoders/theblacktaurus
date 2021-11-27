@@ -58,9 +58,9 @@
 <div class="topbar">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-7 col-sm-12">
-                <span>Enjoy free shipping across Singapore. Limited period offer.. Hurry!!!</span></div>
-            <div class="col-lg-5 col-sm-12">
+            <div class="col-lg-6 col-sm-12">
+                <span>{{__('Header-Msg')}}</span></div>
+            <div class="col-lg-6 col-sm-12">
                 <ul class="topbar-links">
                     @if (auth('customer')->check())
                         <li><a href="{{ route('customer.overview') }}"
@@ -78,8 +78,15 @@
                         @endif
                         </li>
                         <li>|</li>
-                        <li><a class="btn-shopping-cart" href="{{ route('public.cart') }}"><i
-                                    class="fas fa-shopping-cart"></i>Cart(<span style="margin-left: 0px !important;">{{ Cart::instance('cart')->count() }}</span> items)</a>
+                        <li>
+                            <div  class="header__actions">
+                            <a class="header__extra btn-compare" href="{{ route('public.compare') }}"><i
+                                    class="icon-chart-bars"></i><span><i>{{ Cart::instance('compare')->count() }}</i></span></a>
+                            <a class="header__extra btn-wishlist" href="{{ route('public.wishlist') }}"><i
+                                    class="icon-heart"></i><span><i>{{ !auth('customer')->check() ? Cart::instance('wishlist')->count() : auth('customer')->user()->wishlist()->count() }}</i></span></a>
+                            <a class="header__extra btn-shopping-cart" href="{{ route('public.cart') }}"><i
+                                    class="icon-bag2"></i><span><i>{{ Cart::instance('cart')->count() }}</i></span></a>
+                            </div>
                         </li>
                         <li>|</li>
                         @if (is_plugin_active('language'))
@@ -102,12 +109,6 @@
             <div class="col-xl-8 col-lg-8 col-md-12 col-12">
                 <div class="navigation-area">
                     <div id='cssmenu' class="float-lg-right">
-{{--                        <ul>--}}
-{{--                            <li><a href='#snackIt'>Snack It!</a></li>--}}
-{{--                            <li><a href="{{ route('public.index')}}/about-us">About</a></li>--}}
-{{--                            <li><a href='{{ route('public.index')}}/retail'>Retail</a></li>--}}
-{{--                            <li><a href='{{ route('public.index')}}/contact'>Contact</a></li>--}}
-{{--                        </ul>--}}
                         {!! Menu::renderMenuLocation('main-menu', [
                     'view'    => 'menu',
                     'options' => ['class' => 'menu'],

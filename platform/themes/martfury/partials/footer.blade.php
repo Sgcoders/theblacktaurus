@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-3 col-sm-6 wow fadeInLeft animated">
                 <div>
-                    <img src="{{ route('public.index') }}/storage/pages/footer-logo.png" class="img-fluid d-block">
+                    <img src="{{ URL::to('/') }}/storage/pages/footer-logo.png" class="img-fluid d-block">
                     <p>Taurus offers Singapore restaurant selling local dishes was known for its great tasting yet
                         affordable live crabs </p>
                     <ul class="footer-social">
@@ -17,7 +17,7 @@
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp animated">
                 <div>
-                    <h5>Products</h5>
+                    <h5>{{ __('Products') }}</h5>
                     <ul class="footer-bullete latest-products-link">
                         {{--                    <li><a href='#'><i class="fas fa-caret-right"></i>Salted Egg Fish Skin</a></li>--}}
                         {{--                    <li><a href='#'><i class="fas fa-caret-right"></i>Salted Egg Potato Chips</a></li>--}}
@@ -28,7 +28,7 @@
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp animated">
                 <div>
-                    <h5>Explore</h5>
+                    <h5>{{__('Explore')}}</h5>
 
                     {!! Menu::renderMenuLocation('main-menu', [
                 'view'    => 'menu',
@@ -38,8 +38,8 @@
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInRight animated">
                 <div>
-                    <h5>Newsletter</h5>
-                    <p>Get insider access to new products and promotions.</p>
+                    <h5>{{__('Newsletter')}}</h5>
+                    <p>{{__('Get Insider')}}</p>
                     <form method="post" action="{{ route('public.newsletter.subscribe') }}">
                         @csrf
                         <div class="input-group input-group-lg pt-0">
@@ -85,7 +85,7 @@
         </div>
     </div>
 </div>
-@if (is_plugin_active('newsletter') && theme_option('enable_newsletter_popup', 'yes') === 'yes')
+@if (!is_plugin_active('newsletter') && theme_option('enable_newsletter_popup', 'yes') === 'yes')
     <div data-session-domain="{{ config('session.domain') ?? request()->getHost() }}"></div>
     <div class="ps-popup" id="subscribe" data-time="{{ (int)theme_option('newsletter_show_after_seconds', 10) * 1000 }}"
          style="display: none">
@@ -182,15 +182,15 @@
     </script>
 @endif
 <script type="text/javascript">
-    $(document).ready(function () {
-        axios.get("{{ route('public.ajax.featured-products-link') }}")
-            .then(res => {
-                $('.latest-products-link').html(res.data.data);
-            })
-            .catch(res => {
-                console.log(res);
-            });
-    });
+    {{--$(document).ready(function () {--}}
+    {{--    axios.get("{{ route('public.ajax.featured-products-link') }}")--}}
+    {{--        .then(res => {--}}
+    {{--            $('.latest-products-link').html(res.data.data);--}}
+    {{--        })--}}
+    {{--        .catch(res => {--}}
+    {{--            console.log(res);--}}
+    {{--        });--}}
+    {{--});--}}
 </script>
 </body>
 </html>

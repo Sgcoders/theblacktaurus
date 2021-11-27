@@ -101,6 +101,7 @@ class LanguageServiceProvider extends ServiceProvider
         });
 
         $this->app->booted(function () {
+
             if (defined('THEME_OPTIONS_MODULE_SCREEN_NAME')) {
                 Language::registerModule(THEME_OPTIONS_MODULE_SCREEN_NAME);
             }
