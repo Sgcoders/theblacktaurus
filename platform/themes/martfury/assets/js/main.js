@@ -227,26 +227,26 @@
         if (target.length > 0) {
             target.each(function () {
                 var el = $(this),
-        //             loop: true,
-        // margin: 20,
-        // nav: true,
-        // autoHeight: true,
-        // //smartSpeed:900,
-        // dots: false,
-        // autoplay: false,
-        // //autoplayTimeout:1500,
-        // navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
-        // responsive: {
-        //     0: {
-        //         items: 1
-        //     },
-        //     600: {
-        //         items: 2
-        //     },
-        //     1000: {
-        //         items: 4
-        //     }
-        // }
+                    //             loop: true,
+                    // margin: 20,
+                    // nav: true,
+                    // autoHeight: true,
+                    // //smartSpeed:900,
+                    // dots: false,
+                    // autoplay: false,
+                    // //autoplayTimeout:1500,
+                    // navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
+                    // responsive: {
+                    //     0: {
+                    //         items: 1
+                    //     },
+                    //     600: {
+                    //         items: 2
+                    //     },
+                    //     1000: {
+                    //         items: 4
+                    //     }
+                    // }
                     dataAuto = el.data('owl-auto'),
                     dataLoop = el.data('owl-loop'),
                     dataSpeed = el.data('owl-speed'),
@@ -1014,16 +1014,16 @@
         $(this).find('p').addClass('animated fadeInUp');
         $(this).find('.btn-get-started').addClass('animated fadeInUp');
     });
-    var wow = new WOW ({
-		boxClass:     'wow',      // animated element css class (default is wow)
-		animateClass: 'animated', // animation css class (default is animated)
-		offset:       0,          // distance to the element when triggering the animation (default is 0)
-		mobile:       false,       // trigger animations on mobile devices (default is true)
-		live:         true        // act on asynchronously loaded content (default is true)
-	  }
-	);
-	wow.init();
-	$('#indxproductsale1').owlCarousel({
+    var wow = new WOW({
+            boxClass: 'wow',      // animated element css class (default is wow)
+            animateClass: 'animated', // animation css class (default is animated)
+            offset: 0,          // distance to the element when triggering the animation (default is 0)
+            mobile: false,       // trigger animations on mobile devices (default is true)
+            live: true        // act on asynchronously loaded content (default is true)
+        }
+    );
+    wow.init();
+    $('#indxproductsale1').owlCarousel({
         loop: true,
         margin: 20,
         nav: true,
@@ -1067,10 +1067,40 @@
             }
         }
     });
-	$('.footer-bullete li').each(function(ind){
-	    $(this).prepend('<i class="fas fa-caret-right"></i>');
+    $('.footer-bullete li').each(function (ind) {
+        $(this).prepend('<i class="fas fa-caret-right"></i>');
     })
 
+    $('.page-title').text($("title").text());
+    $('li.contatlist').parent('ul').addClass('contatlist');
+    $('li.contatlist').each(function (ind) {
+        $(this).removeClass('contatlist');
+        var fa = ind == 0 ? 'map-marker-alt' : ind == 1 ? 'envelope' : 'phone-alt';
+        $(this).prepend('<i class="fas fa-' + fa + '"></i>')
+    })
+    $('.before-contact-form').append('<form name="frm_cntct" id="frm_cntct" method="post" action="" onSubmit="return false;">\
+                  <div class="row">\
+                    <div class="form-group col-md-6">\
+                      <input type="text" class="form-control form-control-lg" name="name" placeholder="Your Name*">\
+                    </div>\
+                    <div class="form-group col-md-6">\
+                      <input type="email" class="form-control form-control-lg" name="email" placeholder="Your Email Id*">\
+                    </div>\
+                  </div>\
+                  <div class="row">\
+                    <div class="form-group col-md-6">\
+                      <input type="text" class="form-control form-control-lg" name="phone" placeholder="Phone*">\
+                    </div>\
+                    <div class="form-group col-md-6">\
+                      <input type="subject" class="form-control form-control-lg" name="subject" placeholder="Subject*">\
+                    </div>\
+                  </div>\
+                  <div class="form-group">\
+                    <textarea rows="4" class="form-control form-control-lg" name="message" placeholder="Your Message"></textarea>\
+                  </div>\
+                  <button type="submit" class="btn btn-lg btn-dark btn-block" id="submit_button">Submit</button>\
+                </form>\
+                <div id="message_sent" class="text-center text-danger d-block mt-3"></div>')
 })(jQuery);
 
 function goToByScroll(id) {

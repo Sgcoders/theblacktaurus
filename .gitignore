@@ -42,7 +42,7 @@ resources/docs
 .phpunit.result.cache
 /storage/.license
 /storage/fonts
-/platform/themes/
+/platform/themes/martfury/assets/js
 
 /log
 
