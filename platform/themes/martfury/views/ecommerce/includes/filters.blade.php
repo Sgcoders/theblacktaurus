@@ -26,10 +26,14 @@
             {{--                               role="tab" aria-controls="v-pills-home" aria-selected="true"><i--}}
             {{--                                    class="fas fa-caret-right"></i>Fish Skin</a>--}}
             @foreach($categories as $category)
-                <a class="nav-link
+{{--                <a class="nav-link--}}
+{{--                    @if ($urlCurrent == str_replace('product-categories/', '', $category->url)--}}
+{{--                    || (!empty($categoriesRequest && in_array($category->id, $categoriesRequest)))) active @endif"--}}
+{{--                   href="{{str_replace(Language::getCurrentLocale() != Language::getDefaultLocale() ? Language::getCurrentLocale().'/' : '', '', $category->url)}}">--}}
+                    <a class="nav-link
                     @if ($urlCurrent == str_replace('product-categories/', '', $category->url)
                     || (!empty($categoriesRequest && in_array($category->id, $categoriesRequest)))) active @endif"
-                   href="{{str_replace(Language::getCurrentLocale() != Language::getDefaultLocale() ? Language::getCurrentLocale().'/' : '', '', $category->url)}}">
+                   href="{{$category->url}}">
                     <i class="fas fa-caret-right"></i>{{ $category->name }}</a>
                 @if ($category->children->count())
                     @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.sub-categories', ['children' => $category->children])
