@@ -3,7 +3,7 @@
 // Custom routes
 // You can delete this route group if you don't need to add your custom routes.
 Route::group(['namespace' => 'Theme\Martfury\Http\Controllers', 'middleware' => ['web', 'core']], function () {
-//    Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
+    Route::group(apply_filters(BASE_FILTER_GROUP_PUBLIC_ROUTE, []), function () {
 
         Route::get('ajax/products', 'MartfuryController@ajaxGetProducts')
             ->name('public.ajax.products');
@@ -57,7 +57,7 @@ Route::group(['namespace' => 'Theme\Martfury\Http\Controllers', 'middleware' => 
 
         Route::get('ajax/get-flash-sale/{id}', 'MartfuryController@ajaxGetFlashSale')
             ->name('public.ajax.get-flash-sale');
-//    });
+    });
 });
 
 Theme::routes();
