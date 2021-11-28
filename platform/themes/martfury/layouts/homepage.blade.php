@@ -100,7 +100,7 @@
 
 
     <div class="flash-sale wow  fadeInUp animated">
-        <a href="#"><img src="{{ URL::to('/') }}/storage/pages/flash-sale.jpg" class="w-100" alt="" /></a>
+        <a href="{{URL::to('#flashSales')}}"><img src="{{ URL::to('/') }}/storage/pages/flash-sale.jpg" class="w-100" alt="" /></a>
     </div>
     {!! Theme::content() !!}
     @include(Theme::getThemeNamespace('views.ecommerce.products'), array('products' => app(Botble\Ecommerce\Services\Products\GetProductService::class)->getProduct1()))

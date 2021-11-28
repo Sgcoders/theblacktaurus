@@ -1,5 +1,5 @@
 @if ($flashSale)
-    <div class="ps-deal-of-day container wow fadeInUp animated">
+    <div class="ps-deal-of-day container wow fadeInUp animated" id="flashSales">
         <div class="ps-container">
             <div class="ps-section__header">
                 <div class="ps-block--countdown-deal">
