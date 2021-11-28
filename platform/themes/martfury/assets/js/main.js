@@ -1100,7 +1100,10 @@
                   </div>\
                   <button type="submit" class="btn btn-lg btn-dark btn-block" id="submit_button">Submit</button>\
                 </form>\
-                <div id="message_sent" class="text-center text-danger d-block mt-3"></div>')
+                <div id="message_sent" class="text-center text-danger d-block mt-3"></div>');
+    $('.cert-area a.fancybox').each(function(){
+        $(this).attr('href', $(this).children('img').attr('src'));
+    })
 })(jQuery);
 
 function goToByScroll(id) {
