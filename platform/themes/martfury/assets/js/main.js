@@ -1078,7 +1078,7 @@
         var fa = ind == 0 ? 'map-marker-alt' : ind == 1 ? 'envelope' : 'phone-alt';
         $(this).prepend('<i class="fas fa-' + fa + '"></i>')
     })
-    $('.before-contact-form').append('<form name="frm_cntct" id="frm_cntct" method="post" action="" onSubmit="return false;">\
+    $('.contact-form-shortcode').append('<form name="frm_cntct" id="frm_cntct" method="post" action="" onSubmit="return false;">\
                   <div class="row">\
                     <div class="form-group col-md-6">\
                       <input type="text" class="form-control form-control-lg" name="name" placeholder="Your Name*">\
