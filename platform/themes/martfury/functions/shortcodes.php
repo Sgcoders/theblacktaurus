@@ -208,7 +208,7 @@ app()->booted(function () {
 //        }, 120);
 //    }
      add_shortcode('contact-form', __('Contact Form'), __('Contact Form'), function ($shortcode) {
-        return '<div class="contact-form-shortcode"></div>';
+        return Theme::partial('short-codes.contact-us-form');
     });
 
     add_shortcode('contact-info-boxes', __('Contact info boxes'), __('Contact info boxes'), function ($shortCode) {

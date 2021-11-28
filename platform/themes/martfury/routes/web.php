@@ -68,6 +68,10 @@ Route::group(['namespace' => 'Theme\Martfury\Http\Controllers', 'middleware' => 
         Route::get('/', 'MartfuryController@getIndex')
             ->name('public.index');
 
+
+        Route::post('/send-contact-email', 'MartfuryController@sendContactEmail')
+            ->name('public.send-contact-email');
+
         Route::get('sitemap.xml', 'MartfuryController@getSiteMap')
             ->name('public.sitemap');
 

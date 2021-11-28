@@ -1,4 +1,5 @@
 <?php
+
 namespace Theme\Martfury\Http\Controllers;
 
 use Botble\Base\Enums\BaseStatusEnum;
@@ -48,17 +49,17 @@ class MartfuryController extends PublicController
 
         $products = get_products_by_collections([
             'collections' => [
-                'by'       => 'id',
+                'by' => 'id',
                 'value_in' => [$request->input('collection_id')],
             ],
-            'take'        => (int) $request->input('limit', 10),
-            'with'        => [
+            'take' => (int)$request->input('limit', 10),
+            'with' => [
                 'slugable',
                 'variations',
                 'productCollections',
                 'variationAttributeSwatchesForProductList',
             ],
-            'withCount'   => $withCount,
+            'withCount' => $withCount,
         ]);
 
         $data = [];
@@ -107,8 +108,8 @@ class MartfuryController extends PublicController
         }
 
         $products = get_trending_products([
-            'take'      => (int) $request->input('limit', 10),
-            'with'      => [
+            'take' => (int)$request->input('limit', 10),
+            'with' => [
                 'slugable',
                 'variations',
                 'productCollections',
@@ -164,8 +165,8 @@ class MartfuryController extends PublicController
         }
 
         $products = get_featured_products([
-            'take'      => (int) $request->input('limit', 10),
-            'with'      => [
+            'take' => (int)$request->input('limit', 10),
+            'with' => [
                 'slugable',
                 'variations',
                 'productCollections',
@@ -179,6 +180,7 @@ class MartfuryController extends PublicController
 
         return $response->setData($data);
     }
+
     /**
      * @param Request $request
      * @param BaseHttpResponse $response
@@ -192,11 +194,11 @@ class MartfuryController extends PublicController
         $data = '';
 
         $products = get_featured_products([
-            'take'      => (int) $request->input('limit', 10),
+            'take' => (int)$request->input('limit', 10),
         ]);
 
         foreach ($products as $product) {
-            $data .= '<li><i class="fas fa-caret-right"></i><a href="'.$product->url.'">'.$product->name.'</a></li>';
+            $data .= '<li><i class="fas fa-caret-right"></i><a href="' . $product->url . '">' . $product->name . '</a></li>';
         }
 
         return $response->setData($data);
@@ -223,7 +225,7 @@ class MartfuryController extends PublicController
             ];
         }
 
-        $products = get_top_rated_products((int) $request->input('limit', 10), [
+        $products = get_top_rated_products((int)$request->input('limit', 10), [
             'slugable',
             'variations',
             'productCollections',
@@ -260,8 +262,8 @@ class MartfuryController extends PublicController
         }
 
         $products = get_products_on_sale([
-            'take'      => (int) $request->input('limit', 10),
-            'with'      => [
+            'take' => (int)$request->input('limit', 10),
+            'with' => [
                 'slugable',
                 'variations',
                 'productCollections',
@@ -291,7 +293,7 @@ class MartfuryController extends PublicController
 
         return $response->setData([
             'count' => Cart::instance('cart')->count(),
-            'html'  => Theme::partial('cart'),
+            'html' => Theme::partial('cart'),
         ]);
     }
 
@@ -319,11 +321,11 @@ class MartfuryController extends PublicController
 
         $product = get_products([
             'condition' => [
-                'ec_products.id'     => $id,
+                'ec_products.id' => $id,
                 'ec_products.status' => BaseStatusEnum::PUBLISHED,
             ],
-            'take'      => 1,
-            'with'      => [
+            'take' => 1,
+            'with' => [
                 'defaultProductAttributes',
                 'slugable',
                 'tags',
@@ -383,7 +385,8 @@ class MartfuryController extends PublicController
         Request $request,
         BaseHttpResponse $response,
         ProductInterface $productRepository
-    ) {
+    )
+    {
         if (!$request->ajax() || !$request->wantsJson()) {
             return $response->setNextUrl(route('public.index'));
         }
@@ -414,14 +417,15 @@ class MartfuryController extends PublicController
         BaseHttpResponse $response,
         ReviewInterface $reviewRepository,
         ProductInterface $productRepository
-    ) {
+    )
+    {
         if (!$request->ajax() || !$request->wantsJson()) {
             return $response->setNextUrl(route('public.index'));
         }
 
         $product = $productRepository->getFirstBy([
-            'id'           => $id,
-            'status'       => BaseStatusEnum::PUBLISHED,
+            'id' => $id,
+            'status' => BaseStatusEnum::PUBLISHED,
             'is_variation' => 0,
         ]);
 
@@ -430,7 +434,7 @@ class MartfuryController extends PublicController
         }
 
         $condition = [
-            'status'     => BaseStatusEnum::PUBLISHED,
+            'status' => BaseStatusEnum::PUBLISHED,
             'product_id' => $id,
         ];
 
@@ -443,12 +447,12 @@ class MartfuryController extends PublicController
 
         $reviews = $reviewRepository->advancedGet([
             'condition' => $condition,
-            'order_by'  => ['created_at' => 'desc'],
-            'paginate'  => [
-                'per_page'      => (int)$request->input('per_page', 10),
+            'order_by' => ['created_at' => 'desc'],
+            'paginate' => [
+                'per_page' => (int)$request->input('per_page', 10),
                 'current_paged' => (int)$request->input('page', 1),
             ],
-            'with'      => ['user'],
+            'with' => ['user'],
         ]);
 
         $reviews
@@ -457,13 +461,13 @@ class MartfuryController extends PublicController
 
         if ($star) {
             $message = __(':total review(s) ":star star" for ":product"', [
-                'total'   => $reviews->total(),
+                'total' => $reviews->total(),
                 'product' => $product->name,
-                'star'    => $star,
+                'star' => $star,
             ]);
         } else {
             $message = __(':total review(s) for ":product"', [
-                'total'   => $reviews->total(),
+                'total' => $reviews->total(),
                 'product' => $product->name,
             ]);
         }
@@ -530,6 +534,30 @@ class MartfuryController extends PublicController
         return $response->setMessage(__('We sent an email with download links to your email, please check it!'));
     }
 
+
+    /**
+     * @param Request $request
+     * @param BaseHttpResponse $response
+     * @return BaseHttpResponse
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \Throwable
+     */
+    public function sendContactEmail(Request $request, BaseHttpResponse $response)
+    {
+        $inputs = $request->all();
+        EmailHandler::setModule(Theme::getThemeName())
+            ->setVariableValues([
+                'name'=> $inputs['name'],
+                'phone'=> $inputs['phone'],
+                'subject'=> $inputs['subject'],
+                'message'=> $inputs['message'],
+            ])
+            ->sendUsingTemplate('admin_contact_submit', $request->input('email'), [], false, 'themes',
+                __('New Contact Form Submit', ['name' => $request->input('name')]));
+
+        return $response->setMessage(__('Send contact mail'));
+    }
+
     /**
      * @param Request $request
      * @param BaseHttpResponse $response
@@ -542,7 +570,8 @@ class MartfuryController extends PublicController
         BaseHttpResponse $response,
         ProductInterface $productRepository,
         ProductCategoryInterface $productCategoryRepository
-    ) {
+    )
+    {
         if (!$request->ajax() || !$request->wantsJson()) {
             return $response->setNextUrl(route('public.index'));
         }
@@ -571,11 +600,11 @@ class MartfuryController extends PublicController
 
         $products = $productRepository->getProductsByCategories([
             'categories' => [
-                'by'       => 'id',
+                'by' => 'id',
                 'value_in' => $category->getChildrenIds($category, [$category->id]),
             ],
-            'take'       => (int) $request->input('limit', 10),
-            'withCount'  => $withCount,
+            'take' => (int)$request->input('limit', 10),
+            'withCount' => $withCount,
         ]);
 
         $data = [];
@@ -596,7 +625,8 @@ class MartfuryController extends PublicController
         Request $request,
         BaseHttpResponse $response,
         ProductCategoryInterface $productCategoryRepository
-    ) {
+    )
+    {
 
         if (!$request->ajax() || !$request->wantsJson()) {
             return $response->setNextUrl(route('public.index'));
@@ -612,7 +642,7 @@ class MartfuryController extends PublicController
                 'status' => BaseStatusEnum::PUBLISHED,
                 ['id', 'IN', $categoryIds],
             ],
-            'with'      => ['slugable'],
+            'with' => ['slugable'],
         ]);
 
         return $response->setData(ProductCategoryResource::collection($categories));
@@ -630,7 +660,8 @@ class MartfuryController extends PublicController
         $id,
         BaseHttpResponse $response,
         FlashSaleInterface $flashSaleRepository
-    ) {
+    )
+    {
         if (!$request->ajax() || !$request->wantsJson()) {
             return $response->setNextUrl(route('public.index'));
         }

@@ -153,7 +153,6 @@ class EmailHandler
         if (Arr::get($data, 'variables')) {
             $this->addVariables($data['variables'], $module);
         }
-
         add_filter(BASE_FILTER_AFTER_SETTING_EMAIL_CONTENT, function ($html) use ($module, $data, $type) {
             return $html . view('core/setting::template-line', compact('module', 'data', 'type'))->render();
         }, 99);

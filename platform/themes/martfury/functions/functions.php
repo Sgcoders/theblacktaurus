@@ -88,8 +88,19 @@ add_action('init', function () {
                 'subject'     => __('Download apps'),
                 'can_off'     => true,
             ],
+            'admin_contact_submit' => [
+                'title'       => __('Admin contact submit'),
+                'description' => __('Send mail with contact form into to admin'),
+                'subject'     => __('New Contact Form Submit'),
+                'can_off'     => true,
+            ],
         ],
-        'variables'   => [],
+        'variables'   => [
+            'name'    => 'Contact Name',
+            'phone' => 'Contact Phone',
+            'subject'   => 'Contact subject',
+            'message'   => 'Contact Message',
+        ],
     ], 'themes');
 }, 125);
 

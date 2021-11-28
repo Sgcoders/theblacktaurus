@@ -1078,32 +1078,14 @@
         var fa = ind == 0 ? 'map-marker-alt' : ind == 1 ? 'envelope' : 'phone-alt';
         $(this).prepend('<i class="fas fa-' + fa + '"></i>')
     })
-    $('.contact-form-shortcode').append('<form name="frm_cntct" id="frm_cntct" method="post" action="" onSubmit="return false;">\
-                  <div class="row">\
-                    <div class="form-group col-md-6">\
-                      <input type="text" class="form-control form-control-lg" name="name" placeholder="Your Name*">\
-                    </div>\
-                    <div class="form-group col-md-6">\
-                      <input type="email" class="form-control form-control-lg" name="email" placeholder="Your Email Id*">\
-                    </div>\
-                  </div>\
-                  <div class="row">\
-                    <div class="form-group col-md-6">\
-                      <input type="text" class="form-control form-control-lg" name="phone" placeholder="Phone*">\
-                    </div>\
-                    <div class="form-group col-md-6">\
-                      <input type="subject" class="form-control form-control-lg" name="subject" placeholder="Subject*">\
-                    </div>\
-                  </div>\
-                  <div class="form-group">\
-                    <textarea rows="4" class="form-control form-control-lg" name="message" placeholder="Your Message"></textarea>\
-                  </div>\
-                  <button type="submit" class="btn btn-lg btn-dark btn-block" id="submit_button">Submit</button>\
-                </form>\
-                <div id="message_sent" class="text-center text-danger d-block mt-3"></div>');
-    $('.cert-area a.fancybox').each(function(){
+    $('.cert-area a.fancybox').each(function () {
         $(this).attr('href', $(this).children('img').attr('src'));
     })
+    $('.retail-collapse-btn').each(function(ind){
+        $(this).click(function(){
+            $('.retail-collapse').eq(ind).collapse('toggle');
+        })
+    });
 })(jQuery);
 
 function goToByScroll(id) {
