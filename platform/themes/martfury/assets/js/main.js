@@ -943,6 +943,8 @@
                 $('.retail-collapse').eq(ind).collapse('toggle');
             })
         });
+        $('.companylist ul li:nth-child(1)').append('<i class="fas fa-map-marker-alt"></i>');
+        $('.companylist ul li:nth-child(2)').append('<i class="fas fa-phone-alt"></i>');
     }
 
     $('#product-quickview').on('shown.bs.modal', function () {
