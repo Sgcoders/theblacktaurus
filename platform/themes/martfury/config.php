@@ -37,7 +37,7 @@ return [
         'beforeRenderTheme' => function (Theme $theme) {
             // You may use this event to set up your assets.
 
-            $version = '1.14.6';
+            $version = '1.14.7';
 
             $theme->asset()->usePath()->add('linearicons', 'fonts/Linearicons/Linearicons/Font/demo-files/demo.css');
             $theme->asset()->usePath()->add('bootstrap-css', 'plugins/bootstrap/css/bootstrap.min.css');
@@ -53,7 +53,7 @@ return [
             $theme->asset()->usePath()->add('select2-css', 'plugins/select2/css/select2.min.css');
             $theme->asset()->usePath()->add('fontawesome', 'plugins/font-awesome/css/all.css');
             $theme->asset()->usePath()->add('style', 'css/style.css', [], [], $version);
-            $theme->asset()->usePath()->add('homepage', 'css/homepage.css', [], [], $version.microtime());
+            $theme->asset()->usePath()->add('homepage', 'css/homepage.css', [], [], $version);
 
             if (BaseHelper::siteLanguageDirection() == 'rtl') {
                 $theme->asset()->usePath()->add('rtl', 'css/rtl.css', [], [], $version);
