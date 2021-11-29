@@ -29,6 +29,12 @@ class Client extends Request
      * @return CreatePaymentResponse
      * @throws \Exception
      */
+
+    public function __construct($privateApiKey, $live = false)
+    {
+        parent::__construct($privateApiKey, setting('payment_hitpay_mode'));
+    }
+
     public function createPayment(CreatePayment $request)
     {
         $result = $this->request('POST', '/payment-requests', (array)$request);
@@ -79,7 +85,7 @@ class Client extends Request
         $sig = implode("", array_values($hmacSource));
         return hash_hmac('sha256', $sig, $secret);
     }
-    
+
     /**
      * https://hit-pay.com/docs.html?php#refund
      *

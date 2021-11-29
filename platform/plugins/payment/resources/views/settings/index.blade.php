@@ -288,7 +288,7 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="text-title-field" for="payment_hitpay_description">{{ trans('core/base::forms.description') }}</label>
-                                                <textarea class="next-input" name="payment_hitpay_description" id="payment_paypal_description">{{ get_payment_setting('description', 'hitpay', __('Payment with HitPay')) }}</textarea>
+                                                <textarea class="next-input" name="payment_hitpay_description" id="payment_hitpay_description">{{ get_payment_setting('description', 'hitpay', __('Payment with HitPay')) }}</textarea>
                                             </div>
                                             <p class="payment-note">
                                                 {{ trans('plugins/payment::payment.please_provide_information') }} <a target="_blank" href="//www.hitpayapp.com/">HitPay</a>:
@@ -303,14 +303,13 @@
                                                     <input type="password" class="next-input" placeholder="••••••••" id="hitpay_salt" name="payment_hitpay_salt" value="{{ app()->environment('demo') ? '*******************************' : setting('payment_hitpay_salt') }}">
                                                 </div>
                                             </div>
-{{--                                            {!! Form::hidden('payment_hitpay_mode', 1) !!}--}}
-{{--                                            <div class="form-group mb-3">--}}
-{{--                                                <label class="next-label">--}}
-{{--                                                    <input type="checkbox"  value="0" name="payment_hitpay_mode" @if (setting('payment_hitpay_mode') == 0) checked @endif>--}}
-{{--                                                    {{ trans('plugins/payment::payment.sandbox_mode') }}--}}
-{{--                                                </label>--}}
-{{--                                            </div>--}}
-
+                                            {!! Form::hidden('payment_hitpay_mode', 1) !!}
+                                            <div class="form-group mb-3">
+                                                <label class="next-label">
+                                                    <input type="checkbox"  value="0" name="payment_hitpay_mode" @if (setting('payment_hitpay_mode') == 0) checked @endif>
+                                                    {{ trans('plugins/payment::payment.sandbox_mode') }}
+                                                </label>
+                                            </div>
                                             {!! apply_filters(PAYMENT_METHOD_SETTINGS_CONTENT, null, 'hitpay') !!}
                                         </div>
                                     </div>

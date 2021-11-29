@@ -69,7 +69,7 @@ class Request
         if (!extension_loaded('curl')) {
             curl_setopt2($this->ch, CURLOPT_URL2, $endpoint . $path);
             curl_setopt2($this->ch, CURLOPT_HEADER2, false);
-            curl_setopt2($this->ch, CURLOPT_SSL_VERIFYPEER2, false); 
+            curl_setopt2($this->ch, CURLOPT_SSL_VERIFYPEER2, false);
             curl_setopt2($this->ch, CURLOPT_RETURNTRANSFER2, true);
             curl_setopt2($this->ch, CURLOPT_CUSTOMREQUEST2, $type);
 
@@ -84,7 +84,7 @@ class Request
         } else {
             curl_setopt($this->ch, CURLOPT_URL, $endpoint . $path);
             curl_setopt($this->ch, CURLOPT_HEADER, false);
-            curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false); 
+            curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $type);
 
@@ -117,7 +117,7 @@ class Request
             $error = curl_error($this->ch);
             $httpCode = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
         }
-        
+
         if (!empty($error)) {
             throw new \Exception($error);
         } elseif (isset($response->detail)) {
