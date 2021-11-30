@@ -1026,7 +1026,8 @@ ul.privacypl li a:hover {
     }
 
     #heroBanner .carousel-item img {
-        object-fit: cover
+        object-fit: cover;
+        object-position: -150px 0px;
     }
 
     .navigation-area {
@@ -1326,10 +1327,12 @@ ul.privacypl li a:hover {
     font-weight: 500;
     line-height: 1em;
 }
-.footer-payments img{
+
+.footer-payments img {
     height: 25px;
 }
-.conact-page p{
+
+.conact-page p {
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
     color: black;
@@ -1343,6 +1346,14 @@ ul.privacypl li a:hover {
     letter-spacing: 1px;
     position: relative;
 }
-.ps-block--countdown-deal{
+
+.ps-block--countdown-deal {
     margin-top: 20px;
+}
+
+.download-links a {
+    margin-right: 20px;
+}
+#heroBanner .carousel-item:before{
+    content: none;
 }

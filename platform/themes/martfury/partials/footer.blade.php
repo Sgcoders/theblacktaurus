@@ -182,15 +182,15 @@
     </script>
 @endif
 <script type="text/javascript">
-    $(document).ready(function () {
-        axios.get("{{ route('public.ajax.featured-products-link') }}")
-            .then(res => {
-                $('.latest-products-link').html(res.data.data);
-            })
-            .catch(res => {
-                console.log(res);
-            });
-    });
+    {{--$(document).ready(function () {--}}
+    {{--    axios.get("{{ route('public.ajax.featured-products-link') }}")--}}
+    {{--        .then(res => {--}}
+    {{--            $('.latest-products-link').html(res.data.data);--}}
+    {{--        })--}}
+    {{--        .catch(res => {--}}
+    {{--            console.log(res);--}}
+    {{--        });--}}
+    {{--});--}}
 </script>
 </body>
 </html>

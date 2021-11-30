@@ -1,66 +1,67 @@
 {!! Theme::partial('header') !!}
 
 <div id="homepage-1">
-    <div class="indx-slider">
-        <div id="heroBanner" class="justify-cntent-center align-items-center">
-            <div id="bannerCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-                <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+    {!! do_shortcode('[simple-slider key="home-slider"][/simple-slider]') !!}
+{{--    <div class="indx-slider">--}}
+{{--        <div id="heroBanner" class="justify-cntent-center align-items-center">--}}
+{{--            <div id="bannerCarousel" class="carousel slide carousel-fade" data-ride="carousel">--}}
+{{--                <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>--}}
 
-                <div class="carousel-inner" role="listbox">
+{{--                <div class="carousel-inner" role="listbox">--}}
 
-                    <div class="carousel-item active">
-                        <div class="carousel-background"><img src="{{ URL::to('/') }}/storage/sliders/slider-1.jpg" alt="" class="img-fluid d-block mx-auto"></div>
-                        <div class="carousel-container first-carousel-content">
-                            <div class="carousel-content">
-                                <h2 class="animated fadeInDown"><small>YES WE HAVE</small><br>BEST
-                                    <span>POTATO CHIPS</span>
-                                </h2>
-                                <p class="animated fadeInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit,<br>sed diam nonummy nibh euismod.</p>
-                                <div class="bannerbtn-area">
-                                    <a href="javascript:void(0);" class="btn-service animated fadeIn scrollto">ORDER
-                                        NOW</a>
+{{--                    <div class="carousel-item active">--}}
+{{--                        <div class="carousel-background"><img src="{{ URL::to('/') }}/storage/sliders/slider-1.jpg" alt="" class="img-fluid d-block mx-auto"></div>--}}
+{{--                        <div class="carousel-container first-carousel-content">--}}
+{{--                            <div class="carousel-content">--}}
+{{--                                <h2 class="animated fadeInDown"><small>YES WE HAVE</small><br>BEST--}}
+{{--                                    <span>POTATO CHIPS</span>--}}
+{{--                                </h2>--}}
+{{--                                <p class="animated fadeInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing--}}
+{{--                                    elit,<br>sed diam nonummy nibh euismod.</p>--}}
+{{--                                <div class="bannerbtn-area">--}}
+{{--                                    <a href="javascript:void(0);" class="btn-service animated fadeIn scrollto">ORDER--}}
+{{--                                        NOW</a>--}}
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-background"><img src="{{ URL::to('/') }}/storage/sliders/slider-2.jpg" alt="" class="img-fluid d-block mx-auto"></div>
-                        <div class="carousel-container second-carousel-content">
-                            <div class="carousel-content">
-                                <h2 class="animated fadeInDown"><small>YES WE HAVE</small><br>BEST
-                                    <span>POTATO CHIPS</span>
-                                </h2>
-                                <p class="animated fadeInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit,<br>sed diam nonummy nibh euismod.</p>
-                                <div class="bannerbtn-area">
-                                    <a href="javascript:void(0);" class="btn-service animated fadeIn scrollto">ORDER
-                                        NOW</a>
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="carousel-item">--}}
+{{--                        <div class="carousel-background"><img src="{{ URL::to('/') }}/storage/sliders/slider-2.jpg" alt="" class="img-fluid d-block mx-auto"></div>--}}
+{{--                        <div class="carousel-container second-carousel-content">--}}
+{{--                            <div class="carousel-content">--}}
+{{--                                <h2 class="animated fadeInDown"><small>YES WE HAVE</small><br>BEST--}}
+{{--                                    <span>POTATO CHIPS</span>--}}
+{{--                                </h2>--}}
+{{--                                <p class="animated fadeInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing--}}
+{{--                                    elit,<br>sed diam nonummy nibh euismod.</p>--}}
+{{--                                <div class="bannerbtn-area">--}}
+{{--                                    <a href="javascript:void(0);" class="btn-service animated fadeIn scrollto">ORDER--}}
+{{--                                        NOW</a>--}}
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon"><i class="fas fa-angle-left"></i></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-
-                <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon"><i class="fas fa-angle-right"></i></span>
-                    <span class="sr-only">Next</span>
-                </a>
-
-            </div>
-        </div>
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
 
-    </div>
+{{--                </div>--}}
+
+{{--                <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">--}}
+{{--                    <span class="carousel-control-prev-icon"><i class="fas fa-angle-left"></i></span>--}}
+{{--                    <span class="sr-only">Previous</span>--}}
+{{--                </a>--}}
+
+{{--                <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">--}}
+{{--                    <span class="carousel-control-next-icon"><i class="fas fa-angle-right"></i></span>--}}
+{{--                    <span class="sr-only">Next</span>--}}
+{{--                </a>--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
+
+
+{{--    </div>--}}
 
 
     <div class="container">
@@ -89,7 +90,7 @@
                 <div class="modal-body">
                     <div class="embed-responsive embed-responsive-16by9">
 
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{{--                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
                     </div>
 
                 </div>
