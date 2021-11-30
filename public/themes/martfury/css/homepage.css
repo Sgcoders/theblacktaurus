@@ -312,7 +312,7 @@ ul.privacypl li a:hover {
 
 #indxproductsale .item div, .ps-product div {
     display: block;
-    padding: 15px;
+    padding: 15px 0px;
     text-align: center
 }
 
