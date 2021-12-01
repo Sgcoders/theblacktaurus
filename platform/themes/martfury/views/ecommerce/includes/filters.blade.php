@@ -17,7 +17,7 @@
 @endphp
 
 
-<div class="nav-holder" id="SnackIt">
+<div class="nav-holder">
     <h2 class="text-uppercase">{{ __('Snack Bases') }}</h2>
     <div class="nav-holderinner">
         <div class="nav flex-column nav-pills ps-list--categories" id="v-pills-tab" role="tablist"

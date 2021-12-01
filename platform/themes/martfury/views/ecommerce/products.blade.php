@@ -1,3 +1,4 @@
+<div id="SnackIt">
 <div class="snakbase-area wow fadeInLeft animated">
     <div class="container">
         <div class="row">
@@ -23,4 +24,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

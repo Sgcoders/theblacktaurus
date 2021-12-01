@@ -68,7 +68,7 @@
         <div class="ad-video-area">
             <div class="row no-gutters">
                 <div class="col-md-6">
-                    <div><a href=""><img src="{{ URL::to('/') }}/storage/pages/ad.jpg" class="w-100"></a></div>
+                    <div><a href="{{URL::to('#SnackIt')}}"><img src="{{ URL::to('/') }}/storage/pages/ad.jpg" class="w-100"></a></div>
                 </div>
                 <div class="col-md-6">
                     <div><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><img src="{{ URL::to('/') }}/storage/pages/video-img.jpg" class="w-100"></a></div>
@@ -90,7 +90,7 @@
                 <div class="modal-body">
                     <div class="embed-responsive embed-responsive-16by9">
 
-{{--                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>--}}
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
                 </div>
