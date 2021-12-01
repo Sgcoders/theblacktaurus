@@ -88,8 +88,8 @@
                                     class="icon-bag2"></i><span><i>{{ Cart::instance('cart')->count() }}</i></span></a>
                             </div>
                         </li>
-                        <li>|</li>
                         @if (is_plugin_active('language'))
+                            <li>|</li>
                             {!! Theme::partial('language-switcher') !!}
                         @endif
                 </ul>
