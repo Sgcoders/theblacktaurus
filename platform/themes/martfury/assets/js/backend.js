@@ -521,7 +521,6 @@
 
                 // add to params get to popstate not show json
                 data.push({name: '_', value: +new Date()});
-
                 $.ajax({
                     url: $form.attr('action'),
                     type: 'GET',
@@ -570,10 +569,6 @@
                             if (total) {
                                 $('.ps-shopping .products-found').html('<strong>' + total.substr(0, total.indexOf(' ')) +
                                     '</strong><span class="ml-1">' + total.substr(total.indexOf(' ')+1) + '</span>')
-                            }
-
-                            if (res.additional && res.additional.breadcrumb) {
-                                $('.ps-breadcrumb .ps-container').html(res.additional.breadcrumb);
                             }
 
                             if (nextHref != window.location.href) {
@@ -626,7 +621,6 @@
                 $ul.find('a').removeClass('active');
                 $li.addClass('active');
             }
-
             $formSearch.attr('action', href).trigger('submit');
         });
 

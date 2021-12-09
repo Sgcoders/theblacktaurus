@@ -190,6 +190,7 @@
             .catch(res => {
                 console.log(res);
             });
+        $('.select2-selection__arrow').addClass('fas fa-arrow-down');
     });
 </script>
 </body>

@@ -33,7 +33,7 @@
                     <a class="nav-link
                     @if ($urlCurrent == str_replace('product-categories/', '', $category->url)
                     || (!empty($categoriesRequest && in_array($category->id, $categoriesRequest)))) active @endif"
-                   href="{{$category->url}}">
+                   href="{{$category->url}}?home=true">
                     <i class="fas fa-caret-right"></i>{{ $category->name }}</a>
                 @if ($category->children->count())
                     @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.sub-categories', ['children' => $category->children])

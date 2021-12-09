@@ -133,18 +133,18 @@ class PublicProductController
             ];
         }
 
-        if ($query) {
-            $products = $productService->getProduct($request, null, null, $with, $withCount);
-
-            SeoHelper::setTitle(__('Search result for ":query"', compact('query')));
-
-            Theme::breadcrumb()
-                ->add(__('Home'), route('public.index'))
-                ->add(__('Search'), route('public.products'));
-
-            return Theme::scope('ecommerce.search', compact('products', 'query'),
-                'plugins/ecommerce::themes.search')->render();
-        }
+//        if ($query) {
+//            $products = $productService->getProduct($request, null, null, $with, $withCount);
+//
+//            SeoHelper::setTitle(__('Search result for ":query"', compact('query')));
+//
+//            Theme::breadcrumb()
+//                ->add(__('Home'), route('public.index'))
+//                ->add(__('Search'), route('public.products'));
+//
+//            return Theme::scope('ecommerce.search', compact('products', 'query'),
+//                'plugins/ecommerce::themes.search')->render();
+//        }
 
         $products = $productService->getProduct($request, null, null, $with, $withCount);
 
@@ -153,26 +153,17 @@ class PublicProductController
             $message = $total > 1 ? __(':total Products found', compact('total')) : __(':total Product found',
                 compact('total'));
 
-            $view = Theme::getThemeNamespace('views.ecommerce.includes.product-items');
-
-            if (!view()->exists($view)) {
-                $view = 'plugins/ecommerce::themes.includes.product-items';
-            }
-
+            $view = Theme::getThemeNamespace('views.ecommerce.includes.all-product-items-grid');
             return $response
                 ->setData(view($view, compact('products'))->render())
                 ->setMessage($message);
         }
 
-        Theme::breadcrumb()
-            ->add(__('Home'), route('public.index'))
-            ->add(__('Products'), route('public.products'));
-
         SeoHelper::setTitle(__('Products'))->setDescription(__('Products'));
 
-        do_action(PRODUCT_MODULE_SCREEN_NAME);
+//        do_action(PRODUCT_MODULE_SCREEN_NAME);
 
-        return Theme::scope('ecommerce.products', compact('products'),
+        return Theme::scope('ecommerce.all-products', compact('products'),
             'plugins/ecommerce::themes.products')->render();
     }
 
@@ -503,30 +494,16 @@ class PublicProductController
 
         SeoHelper::setSeoOpenGraph($meta);
 
-        Theme::breadcrumb()
-            ->add(__('Home'), route('public.index'))
-            ->add(__('Products'), route('public.products'));
-
-        if ($category->parents->count()) {
-            foreach ($category->parents->reverse() as $parentCategory) {
-                Theme::breadcrumb()->add($parentCategory->name, $parentCategory->url);
-            }
-        }
-
-        Theme::breadcrumb()->add($category->name, $category->url);
-
         do_action(BASE_ACTION_PUBLIC_RENDER_SINGLE, PRODUCT_CATEGORY_MODULE_SCREEN_NAME, $category);
 
+        $home = $request->input('home');
         if ($request->ajax()) {
             $total = $products->total();
             $message = $total > 1 ? __(':total Products found', compact('total')) : __(':total Product found',
                 compact('total'));
 
-            $view = Theme::getThemeNamespace('views.ecommerce.includes.product-items');
+            $view = Theme::getThemeNamespace('views.ecommerce.includes.'. ($home ? 'product-items': 'all-product-items-grid'));
 
-            if (!view()->exists($view)) {
-                $view = 'plugins/ecommerce::themes.includes.product-items';
-            }
 
             return $response
                 ->setData(view($view, compact('products'))->render())
@@ -536,8 +513,8 @@ class PublicProductController
                 ->setMessage($message);
         }
 
-        return Theme::scope('ecommerce.product-category', compact('category', 'products'),
-            'plugins/ecommerce::themes.product-category')->render();
+        return Theme::scope('ecommerce.'. ($home ? 'product-category' : 'all-products'), compact('products'),
+            'plugins/ecommerce::themes.'. ($home ? 'product-category' : 'products'))->render();
     }
 
     /**

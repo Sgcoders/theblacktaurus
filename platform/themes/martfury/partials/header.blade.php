@@ -59,7 +59,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
-                <span>{{__('Header-Msg')}}</span></div>
+                <span>{{__('Header-Msg', ['price' =>'$48'])}}</span></div>
             <div class="col-lg-6 col-sm-12">
                 <ul class="topbar-links">
                     @if (auth('customer')->check())

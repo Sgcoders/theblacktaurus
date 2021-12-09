@@ -79,7 +79,6 @@ class GetProductService
                 ->distinct('attribute_set_id')
                 ->count('attribute_set_id');
         }
-
         switch ($queryVar['sort_by']) {
             case 'date_asc':
                 $orderBy = [
@@ -158,7 +157,6 @@ class GetProductService
                 'ec_products.is_variation' => 0,
             ], $conditions);
         }
-
         $products = $this->productRepository->filterProducts(
             [
                 'keyword' => $queryVar['keyword'],

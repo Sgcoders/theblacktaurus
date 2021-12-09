@@ -2,81 +2,6 @@
 
 <div id="homepage-1">
     {!! do_shortcode('[simple-slider key="home-slider"][/simple-slider]') !!}
-{{--    <div class="indx-slider">--}}
-{{--        <div id="heroBanner" class="justify-cntent-center align-items-center">--}}
-{{--            <div id="bannerCarousel" class="carousel slide carousel-fade" data-ride="carousel">--}}
-{{--                <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>--}}
-
-{{--                <div class="carousel-inner" role="listbox">--}}
-
-{{--                    <div class="carousel-item active">--}}
-{{--                        <div class="carousel-background"><img src="{{ URL::to('/') }}/storage/sliders/slider-1.jpg" alt="" class="img-fluid d-block mx-auto"></div>--}}
-{{--                        <div class="carousel-container first-carousel-content">--}}
-{{--                            <div class="carousel-content">--}}
-{{--                                <h2 class="animated fadeInDown"><small>YES WE HAVE</small><br>BEST--}}
-{{--                                    <span>POTATO CHIPS</span>--}}
-{{--                                </h2>--}}
-{{--                                <p class="animated fadeInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing--}}
-{{--                                    elit,<br>sed diam nonummy nibh euismod.</p>--}}
-{{--                                <div class="bannerbtn-area">--}}
-{{--                                    <a href="javascript:void(0);" class="btn-service animated fadeIn scrollto">ORDER--}}
-{{--                                        NOW</a>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="carousel-item">--}}
-{{--                        <div class="carousel-background"><img src="{{ URL::to('/') }}/storage/sliders/slider-2.jpg" alt="" class="img-fluid d-block mx-auto"></div>--}}
-{{--                        <div class="carousel-container second-carousel-content">--}}
-{{--                            <div class="carousel-content">--}}
-{{--                                <h2 class="animated fadeInDown"><small>YES WE HAVE</small><br>BEST--}}
-{{--                                    <span>POTATO CHIPS</span>--}}
-{{--                                </h2>--}}
-{{--                                <p class="animated fadeInUp">Lorem ipsum dolor sit amet, consectetuer adipiscing--}}
-{{--                                    elit,<br>sed diam nonummy nibh euismod.</p>--}}
-{{--                                <div class="bannerbtn-area">--}}
-{{--                                    <a href="javascript:void(0);" class="btn-service animated fadeIn scrollto">ORDER--}}
-{{--                                        NOW</a>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-
-{{--                </div>--}}
-
-{{--                <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">--}}
-{{--                    <span class="carousel-control-prev-icon"><i class="fas fa-angle-left"></i></span>--}}
-{{--                    <span class="sr-only">Previous</span>--}}
-{{--                </a>--}}
-
-{{--                <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">--}}
-{{--                    <span class="carousel-control-next-icon"><i class="fas fa-angle-right"></i></span>--}}
-{{--                    <span class="sr-only">Next</span>--}}
-{{--                </a>--}}
-
-{{--            </div>--}}
-{{--        </div>--}}
-
-
-{{--    </div>--}}
-
-
-    <div class="container">
-        <div class="ad-video-area">
-            <div class="row no-gutters">
-                <div class="col-md-6">
-                    <div><a href="{{URL::to('#SnackIt')}}"><img src="{{ URL::to('/') }}/storage/pages/ad.jpg" class="w-100"></a></div>
-                </div>
-                <div class="col-md-6">
-                    <div><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><img src="{{ URL::to('/') }}/storage/pages/video-img.jpg" class="w-100"></a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal -->
     <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog bd-example-modal-lg modal-lg" role="document">
@@ -89,7 +14,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="embed-responsive embed-responsive-16by9">
-
                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
 
@@ -105,7 +29,17 @@
     </div>
     {!! Theme::content() !!}
     @include(Theme::getThemeNamespace('views.ecommerce.products'), array('products' => app(Botble\Ecommerce\Services\Products\GetProductService::class)->getProduct1()))
-    <div class="testiminials-area wow fadeInUp animated" id="examples">
+
+    <div class="container">
+        <div class="ad-video-area">
+            <div class="row no-gutters">
+                <div class="col-md-6 offset-md-3 col-sm-12">
+                    <div><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><img src="{{ URL::to('/') }}/storage/pages/video-img.jpg" class="w-100"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="testiminials-area wow fadeInUp animated" id="examples">
         <div class="container">
 
 
