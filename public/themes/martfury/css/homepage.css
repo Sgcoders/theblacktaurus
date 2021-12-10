@@ -310,7 +310,7 @@ ul.privacypl li a:hover {
     border: 1px solid #b2b2b2
 }
 
-#indxproductsale .item div, .ps-product div{
+#indxproductsale .item div, .ps-product div {
     display: block;
     padding: 10px 0px;
     text-align: center;
@@ -534,14 +534,14 @@ ul.privacypl li a:hover {
     font-size: 18px
 }
 
-#snakbase .item div p , .ps-product div p {
+#snakbase .item div p, .ps-product div p {
     font-size: 15px;
     overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 6; /* number of lines to show */
-           line-clamp: 6;
-   -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* number of lines to show */
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
 }
 
 #snakbase .item div span {
@@ -779,7 +779,7 @@ ul.privacypl li a:hover {
     font-family: Roboto, sans-serif;
     font-weight: 600;
     position: relative;
-    margin-bottom: 15px 0
+    margin-bottom: 15px;
 }
 
 .conact-page [class^=col-] div p {
@@ -1365,20 +1365,25 @@ ul.privacypl li a:hover {
 .download-links a {
     margin-right: 20px;
 }
-#heroBanner .carousel-item:before{
+
+#heroBanner .carousel-item:before {
     content: none;
 }
-#SnackIt{
+
+#SnackIt {
     padding-top: 64px;
 }
-#homepage-1 .ps-deal-of-day{
+
+#homepage-1 .ps-deal-of-day {
     padding-top: 64px;
 }
+
 .ps-product {
     padding: 0 !important;
     margin-bottom: 20px;
 }
-.ps-list--categories li a.active{
+
+.ps-list--categories li a.active {
     color: var(--color-1st);
 }
 
@@ -1389,13 +1394,16 @@ ul.privacypl li a:hover {
 .ps-product .ps-product__badge {
     top: 11px;
 }
+
 .ad-video-area {
     margin: 0;
 }
+
 .flash-sale {
     display: block;
-     margin: 0;
+    margin: 0;
 }
+
 .select2-container--open {
     z-index: 9999999
 }
@@ -1414,10 +1422,22 @@ ul.select2-choices:after {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
 }
-.select2 .select2-selection--single .select2-selection__arrow:before{
+
+.select2 .select2-selection--single .select2-selection__arrow:before {
     font-family: 'Font Awesome 5 Free';
     content: "\f107";
 }
+
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: #f5d002;
+}
+
+@media (max-width: 578px) {
+    button.add-to-cart-button {
+        padding: 4px 10px !important;
+        top: -17px !important;
+    }
+    .ps-products-listing .col-6{
+        padding: 0 5px;
+    }
 }
