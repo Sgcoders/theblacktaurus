@@ -18,8 +18,15 @@
 @endphp
 
 <aside class="widget widget_shop">
-    <h4 class="widget-title">{{ __('Product Categories') }}</h4>
+    {{--    <h4 class="widget-title">{{ __('Product Categories') }}</h4>--}}
+    @php
+    /*$allPath = URL::to('product-categories/all');*/
+    $allPath = URL::to('products');
+    @endphp
     <ul class="ps-list--categories">
+        <li class="@if (!empty($categoriesRequest && in_array('all', $categoriesRequest))) current-menu-item @endif">
+            <a href="{{ $allPath }}">{{ __('All Products')}}</a>
+        </li>
         @foreach($categories as $category)
             <li class="@if ($urlCurrent == $category->url || (!empty($categoriesRequest && in_array($category->id, $categoriesRequest)))) current-menu-item @endif @if ($category->children->count()) menu-item-has-children @endif">
                 <a href="{{ $category->url }}">{{ $category->name }}</a>
