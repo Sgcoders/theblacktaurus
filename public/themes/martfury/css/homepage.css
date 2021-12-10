@@ -1275,6 +1275,7 @@ ul.privacypl li a:hover {
     margin: 0 auto !important;
     padding: 0px 0 !important;
     transition: all .5s cubic-bezier(.7, 0, .3, 1) 0s !important;
+    margin-top: -14px !important;
 }
 
 .ps-product__actions li {
