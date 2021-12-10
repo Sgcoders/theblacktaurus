@@ -5,8 +5,10 @@
             <div class="col-lg-3 col-sm-6 wow fadeInLeft animated">
                 <div>
                     <img src="{{ URL::to('/') }}/storage/pages/footer-logo.png" class="img-fluid d-block">
-                    <p>Taurus offers Singapore restaurant selling local dishes was known for its great tasting yet
-                        affordable live crabs </p>
+                    <p>Consistent product quality, on-time<br/>
+                    delivery, and swift product launch,<br/>
+                    make FT Global the ideal contract<br/>
+                    food manufacturing partner</p>
                     <ul class="footer-social">
                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>

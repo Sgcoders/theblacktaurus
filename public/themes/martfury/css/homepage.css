@@ -1268,13 +1268,13 @@ ul.privacypl li a:hover {
 .ps-product__actions {
     background-color: #fff;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    max-width: 200px;
-    list-style: none;
-    margin: 0 auto;
-    padding: 10px 0;
-    transition: all .5s cubic-bezier(.7, 0, .3, 1) 0s;
+    flex-flow: row nowrap !important;
+    justify-content: center !important;
+    max-width: 200px !important;
+    list-style: none !important;
+    margin: 0 auto !important;
+    padding: 0px 0 !important;
+    transition: all .5s cubic-bezier(.7, 0, .3, 1) 0s !important;
 }
 
 .ps-product__actions li {
@@ -1368,7 +1368,7 @@ ul.privacypl li a:hover {
     content: none;
 }
 #SnackIt{
-    /* padding: 64px; */
+    padding-top: 64px;
 }
 #homepage-1 .ps-deal-of-day{
     padding-top: 64px;

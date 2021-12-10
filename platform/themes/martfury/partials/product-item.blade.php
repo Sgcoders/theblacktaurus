@@ -10,6 +10,17 @@
         <button class="add-to-cart-button" data-id="{{ $product->id }}" href="#"
                 data-url="{{ route('public.cart.add-to-cart') }}"><i
                 class="fas fa-shopping-cart"></i>{{ __('Add To Cart') }}</button>
+        <ul class="ps-product__actions">
+                <li><a class="js-quick-view-button" href="#"
+                       data-url="{{ route('public.ajax.quick-view', $product->id) }}" title="{{ __('Quick View') }}"><i
+                            class="icon-eye"></i></a></li>
+            <li><a class="js-add-to-wishlist-button" href="#"
+                   data-url="{{ route('public.wishlist.add', $product->id) }}"
+                   title="{{ __('Add to Wishlist') }}"><i class="icon-heart"></i></a></li>
+            <li><a class="js-add-to-compare-button" href="#"
+                   data-url="{{ route('public.compare.add', $product->id) }}" title="{{ __('Compare') }}"><i
+                        class="icon-chart-bars"></i></a></li>
+            </ul>
         <div>
 
             <h3>{{ $product->name }}</h3>
