@@ -65,7 +65,7 @@
                     <div class="carousel-item active">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/1-2.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/1-1.jpg" class=""></div>
                                 <div class="col-md-12">
                                     <small><strong>Gladys Heng</strong></small>
                                     <span><i class="fas fa-quote-left"></i>
@@ -79,7 +79,7 @@
                     <div class="carousel-item">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/2-1-1.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/2-1.jpg" class=""></div>
                                 <div class="col-md-12">
                                     <small><strong>Angeline Voon</strong></small>
                                     <span><i class="fas fa-quote-left"></i>Love the range from Black Taurus, simply addictive and delicious. Spoilt with choices and suitable for the whole family! Recommended to friends and they love it!<i
@@ -92,7 +92,7 @@
                     <div class="carousel-item">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/3-1-1.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/3-1.jpg" class=""></div>
                                 <div class="col-md-12">
                                     <small><strong>Lee Sally</strong></small>
                                     <span><i class="fas fa-quote-left"></i>If you are a fan of crispy fish skin! Look no further and check out Black Taurus fish skin snacks! They are irresistible and crunchy in every bite!<i
