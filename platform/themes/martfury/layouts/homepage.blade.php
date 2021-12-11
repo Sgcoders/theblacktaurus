@@ -1,9 +1,10 @@
 {!! Theme::partial('header') !!}
 
 <div id="homepage-1">
-    {!! do_shortcode('[simple-slider key="home-slider"][/simple-slider]') !!}
-    <!-- Modal -->
-    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{!! do_shortcode('[simple-slider key="home-slider"][/simple-slider]') !!}
+<!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog bd-example-modal-lg modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,7 +15,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                     </div>
 
                 </div>
@@ -25,7 +29,8 @@
 
 
     <div class="flash-sale wow  fadeInUp animated">
-        <a href="{{URL::to('#flashSales')}}"><img src="{{ URL::to('/') }}/storage/pages/flash-sale.jpg" class="w-100" alt="" /></a>
+        <a href="{{URL::to('#flashSales')}}"><img src="{{ URL::to('/') }}/storage/pages/flash-sale.jpg" class="w-100"
+                                                  alt=""/></a>
     </div>
     {!! Theme::content() !!}
     @include(Theme::getThemeNamespace('views.ecommerce.products'), array('products' => app(Botble\Ecommerce\Services\Products\GetProductService::class)->getProduct1()))
@@ -34,12 +39,13 @@
         <div class="ad-video-area">
             <div class="row no-gutters">
                 <div class="col-md-6 offset-md-3 col-sm-12">
-                    <div><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><img src="{{ URL::to('/') }}/storage/pages/video-img.jpg" class="w-100"></a></div>
+                    <div><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal"><img
+                                src="{{ URL::to('/') }}/storage/pages/video-img.jpg" class="w-100"></a></div>
                 </div>
             </div>
         </div>
     </div>
-        <div class="testiminials-area wow fadeInUp animated" id="examples">
+    <div class="testiminials-area wow fadeInUp animated" id="examples">
         <div class="container">
 
 
@@ -59,10 +65,12 @@
                     <div class="carousel-item active">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/customer.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/1-2.jpg" class=""></div>
                                 <div class="col-md-12">
-                                    <small><strong>Siddharth Jain</strong><br>Bunglow Owner</small>
-                                    <span><i class="fas fa-quote-left"></i>I am highly impressed by the quality portfolio of the properties that Taurus had to offer me, this made my choice a lot easier.<i class="fas fa-quote-right"></i></span>
+                                    <small><strong>Gladys Heng</strong></small>
+                                    <span><i class="fas fa-quote-left"></i>
+                                        We fell in love with Black Taurus range of salted egg snacks! Their standard and quality is great!  Once we start munching we just can't stop and it will be gone before our home movie even reach half mark 😉<i
+                                            class="fas fa-quote-right"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -71,10 +79,11 @@
                     <div class="carousel-item">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/customer.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/2-1-1.jpg" class=""></div>
                                 <div class="col-md-12">
-                                    <small><strong>Ranjit Mullick</strong><br>Apartment Owner</small>
-                                    <span><i class="fas fa-quote-left"></i>The Taurus team understood my requirements very well and offered me the ideal apartment for my family's needs.<i class="fas fa-quote-right"></i></span>
+                                    <small><strong>Angeline Voon</strong></small>
+                                    <span><i class="fas fa-quote-left"></i>Love the range from Black Taurus, simply addictive and delicious. Spoilt with choices and suitable for the whole family! Recommended to friends and they love it!<i
+                                            class="fas fa-quote-right"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -83,10 +92,11 @@
                     <div class="carousel-item">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/customer.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/3-1-1.jpg" class=""></div>
                                 <div class="col-md-12">
-                                    <small><strong>Ajay Daga</strong><br>&nbsp;</small>
-                                    <span><i class="fas fa-quote-left"></i>I compliment the team for the prompt and active response. I would highly recommend it to all my friends and family.<i class="fas fa-quote-right"></i></span>
+                                    <small><strong>Lee Sally</strong></small>
+                                    <span><i class="fas fa-quote-left"></i>If you are a fan of crispy fish skin! Look no further and check out Black Taurus fish skin snacks! They are irresistible and crunchy in every bite!<i
+                                            class="fas fa-quote-right"></i></span>
                                 </div>
                             </div>
                         </div>
