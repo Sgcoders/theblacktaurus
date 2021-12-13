@@ -193,6 +193,7 @@
                 console.log(res);
             });
         $('.select2-selection__arrow').addClass('fas fa-arrow-down');
+        $('.download-links a').attr('download', "");
     });
 </script>
 </body>
