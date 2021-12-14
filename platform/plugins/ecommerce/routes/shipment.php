@@ -5,7 +5,7 @@ Route::group(['namespace' => 'Botble\Ecommerce\Http\Controllers', 'middleware' =
         Route::group([
             'prefix' => 'shipments',
             'permission' => 'shipments.index',
-            'as' => 'shipments.'
+            'as' => 'ecommerce.shipments.'
         ], function () {
 //            Route::get('', [
 //                'as'   => 'index',
