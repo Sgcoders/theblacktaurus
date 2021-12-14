@@ -184,17 +184,17 @@
     </script>
 @endif
 <script type="text/javascript">
-    $(document).ready(function () {
-        axios.get("{{ route('public.ajax.featured-products-link') }}")
-            .then(res => {
-                $('.latest-products-link').html(res.data.data);
-            })
-            .catch(res => {
-                console.log(res);
-            });
-        $('.select2-selection__arrow').addClass('fas fa-arrow-down');
-        $('.download-links a').attr('download', "");
-    });
+    {{--$(document).ready(function () {--}}
+    {{--    axios.get("{{ route('public.ajax.featured-products-link') }}")--}}
+    {{--        .then(res => {--}}
+    {{--            $('.latest-products-link').html(res.data.data);--}}
+    {{--        })--}}
+    {{--        .catch(res => {--}}
+    {{--            console.log(res);--}}
+    {{--        });--}}
+    {{--    $('.select2-selection__arrow').addClass('fas fa-arrow-down');--}}
+    {{--    $('.download-links a').attr('download', "");--}}
+    {{--});--}}
 </script>
 </body>
 </html>

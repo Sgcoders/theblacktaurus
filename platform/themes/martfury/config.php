@@ -37,7 +37,7 @@ return [
         'beforeRenderTheme' => function (Theme $theme) {
             // You may use this event to set up your assets.
 
-            $version = '1.15.4';
+            $version = '1.15.5';
 //            $version = time();
 
             $theme->asset()->usePath()->add('linearicons', 'fonts/Linearicons/Linearicons/Font/demo-files/demo.css');

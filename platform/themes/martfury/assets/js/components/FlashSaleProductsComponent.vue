@@ -15,7 +15,7 @@
              data-owl-nav="true"
              data-owl-dots="true"
              data-owl-item="4"
-             data-owl-item-xs="1"
+             data-owl-item-xs="2"
              data-owl-item-sm="2"
              data-owl-item-md="2"
              data-owl-item-lg="3"
