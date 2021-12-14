@@ -1,6 +1,6 @@
 @foreach ($menus = dashboard_menu()->getAll() as $menu)
     @php $menu = apply_filters(BASE_FILTER_DASHBOARD_MENU, $menu); @endphp
-    <li class="nav-item @if ($menu['active']) active  @endif @if ( $menu['id'] == 'cms-core-platform-administration') d-none @endif" id="{{ $menu['id'] }}">
+    <li class="nav-item @if ($menu['active']) active  @endif id="{{ $menu['id'] }}">
         <a href="{{ $menu['url'] }}" class="nav-link nav-toggle">
             <i class="{{ $menu['icon'] }}"></i>
             <span class="title">
@@ -11,7 +11,7 @@
         @if (isset($menu['children']) && count($menu['children']))
             <ul class="sub-menu @if (!$menu['active']) hidden-ul @endif">
                 @foreach ($menu['children'] as $item)
-                    <li class="nav-item @if ($item['active']) active @endif" id="{{ $item['id'] }}">
+                    <li class="nav-item @if ($item['active']) active @endif @if ( $item['id'] == 'cms-core-system-updater') d-none @endif" id="{{ $item['id'] }}">
                         <a href="{{ $item['url'] }}" class="nav-link">
                             <i class="{{ $item['icon'] }}"></i>
                             {{ trans($item['name']) }}
