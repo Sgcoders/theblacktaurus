@@ -167,6 +167,7 @@ class SystemController extends Controller
      */
     public function getCheckUpdate(BaseHttpResponse $response)
     {
+        return $response;
         if (!config('core.base.general.enable_system_updater')) {
             return $response;
         }
