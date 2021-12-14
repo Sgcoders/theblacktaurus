@@ -223,13 +223,13 @@ return [
 
     [
         'name'        => 'Shipments',
-        'flag'        => 'ecommerce.shipments.index',
+        'flag'        => 'shipments.index',
         'parent_flag' => 'plugins.ecommerce',
     ],
     [
         'name'        => 'Bulk Change',
         'flag'        => 'shipments.bulk',
-        'parent_flag' => 'ecommerce.shipments.index',
+        'parent_flag' => 'shipments.index',
     ],
     [
         'name'        => 'Shipping rules',
