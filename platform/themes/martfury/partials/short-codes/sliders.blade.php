@@ -52,14 +52,20 @@
                     <div class="carousel-inner" role="listbox">
                         @foreach($sliders as $key => $slider)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                @if ($slider->link)
+                                    <a class="ps-banner__overlay" href="{{ url($slider->link) }}">
+                                @endif
                                 <div class="carousel-background"><img
                                         src="{{ RvMedia::getImageUrl($slider->image, null, false, RvMedia::getDefaultImage()) }}"
-                                        alt="" class="img-fluid d-block mx-auto"></div>
+                                        alt="" class="img-fluid d-block mx-auto">
+                                </div>
                                 <div class="carousel-container first-carousel-content">
                                     <div class="carousel-content">
-                                        &nbsp;
                                     </div>
                                 </div>
+                                @if ($slider->link)
+                                    </a>
+                                @endif
                             </div>
                         @endforeach
 
