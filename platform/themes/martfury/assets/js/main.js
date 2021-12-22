@@ -922,7 +922,7 @@
         forFrontendUpdate();
     });
 
-    function forFrontendUpdate(){
+    function forFrontendUpdate() {
 
         $('.footer-bullete li').each(function (ind) {
             $(this).prepend('<i class="fas fa-caret-right"></i>');
@@ -938,8 +938,8 @@
         $('.cert-area a.fancybox').each(function () {
             $(this).attr('href', $(this).children('img').attr('src'));
         })
-        $('.retail-collapse-btn').each(function(ind){
-            $(this).click(function(){
+        $('.retail-collapse-btn').each(function (ind) {
+            $(this).click(function () {
                 $('.retail-collapse').eq(ind).collapse('toggle');
             })
         });
@@ -948,12 +948,23 @@
         $('.download-links a').append('<i class="fas fa-download"></i>');
     }
 
-    $('#product-quickview').on('shown.bs.modal', function () {
+    $('#product-quickview, #product-addto-cart').on('shown.bs.modal', function () {
         $('.ps-product--quickview .ps-product__images').slick('setPosition');
     });
 
     $(window).on('load', function () {
         $('body').addClass('loaded');
+
+        setTimeout(function () {
+            // $('#bgMusic')[0].play();
+            // $('#autoPlayBgMusic').trigger('click');
+        }, 1000)
+        if($(window).innerWidth() < 600){
+            $('#moveOnMobile').addClass('col-12').detach().insertBefore('.copyright-txt');
+        }
+        // $('#autoPlayBgMusic').click(function () {
+        //     $('#bgMusic')[0].play();
+        // })
     });
 
     $.fn.menumaker = function (options) {
@@ -1012,16 +1023,16 @@
 
         });
     };
-    if ($(window).width() <= 980) {
-    } else {
+    // if ($(window).width() <= 980) {
+    // } else {
         jQuery(window).scroll(function () {
             if (jQuery(this).scrollTop() > 0) {
-                jQuery('header').addClass('fix');
+                jQuery('.header-group').addClass('fix');
             } else {
-                jQuery('header').removeClass('fix');
+                jQuery('.header-group').removeClass('fix');
             }
         });
-    }
+    // }
 
     $("#cssmenu").menumaker({
         title: "Menu",
@@ -1052,7 +1063,7 @@
     wow.init();
     $('#indxproductsale1').owlCarousel({
         loop: true,
-        margin: 20,
+        margin: $(window).innerWidth() < 600 ? 12 : 20,
         nav: true,
         autoHeight: true,
         //smartSpeed:900,
@@ -1074,7 +1085,7 @@
     })
     snackCarousel = $('#snakbase').owlCarousel({
         loop: false,
-        margin: 20,
+        margin: $(window).innerWidth() < 600 ? 12 : 20,
         nav: true,
         autoHeight: true,
         //smartSpeed:900,
@@ -1084,13 +1095,13 @@
         navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
         responsive: {
             0: {
-                items: 1
+                items: 2
             },
             600: {
-                items: 2
+                items: 3
             },
             1000: {
-                items: 2
+                items: 4
             }
         }
     });

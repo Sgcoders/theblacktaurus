@@ -20,7 +20,7 @@
 <div class="nav-holder">
     <h2 class="text-uppercase">{{ __('Snack Bases') }}</h2>
     <div class="nav-holderinner">
-        <div class="nav flex-column nav-pills ps-list--categories" id="v-pills-tab" role="tablist"
+        <ul class="nav justify-content-center nav-pills ps-list--categories" id="v-pills-tab" role="tablist"
              aria-orientation="vertical">
             {{--            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"--}}
             {{--                               role="tab" aria-controls="v-pills-home" aria-selected="true"><i--}}
@@ -30,16 +30,18 @@
 {{--                    @if ($urlCurrent == str_replace('product-categories/', '', $category->url)--}}
 {{--                    || (!empty($categoriesRequest && in_array($category->id, $categoriesRequest)))) active @endif"--}}
 {{--                   href="{{str_replace(Language::getCurrentLocale() != Language::getDefaultLocale() ? Language::getCurrentLocale().'/' : '', '', $category->url)}}">--}}
-                    <a class="nav-link
+                <li class="list-item">
+                <a class="nav-link
                     @if ($urlCurrent == str_replace('product-categories/', '', $category->url)
                     || (!empty($categoriesRequest && in_array($category->id, $categoriesRequest)))) active @endif"
                    href="{{$category->url}}?home=true">
-                    <i class="fas fa-caret-right"></i>{{ $category->name }}</a>
+                   {{ $category->name }}</a>
                 @if ($category->children->count())
                     @include(Theme::getThemeNamespace() . '::views.ecommerce.includes.sub-categories', ['children' => $category->children])
                 @endif
+                </li>
             @endforeach
-        </div>
+        </ul>
     </div>
 </div>
 

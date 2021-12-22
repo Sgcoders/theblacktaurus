@@ -1432,7 +1432,7 @@ form {
     }
 }
 
-#product-quickview {
+#product-quickview, #product-addto-cart {
     z-index: 9999;
 
     .ps-product--quickview {
@@ -1441,7 +1441,7 @@ form {
 }
 
 @media (max-width: 768px) {
-    #product-quickview {
+    #product-quickview, #product-addto-cart {
         .modal-dialog {
             .modal-content {
                 padding: 40px 20px 20px;

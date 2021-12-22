@@ -15,10 +15,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
+
+                        @if (env('APP_URL') != 'http://localhost:8000')
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nTLY6ibdRh4"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
+                        @endif
                     </div>
 
                 </div>
@@ -65,7 +68,8 @@
                     <div class="carousel-item active">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/1-1.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/1-1.jpg" class="">
+                                </div>
                                 <div class="col-md-12">
                                     <small><strong>Gladys Heng</strong></small>
                                     <span><i class="fas fa-quote-left"></i>
@@ -79,7 +83,8 @@
                     <div class="carousel-item">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/2-1.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/2-1.jpg" class="">
+                                </div>
                                 <div class="col-md-12">
                                     <small><strong>Angeline Voon</strong></small>
                                     <span><i class="fas fa-quote-left"></i>Love the range from Black Taurus, simply addictive and delicious. Spoilt with choices and suitable for the whole family! Recommended to friends and they love it!<i
@@ -92,7 +97,8 @@
                     <div class="carousel-item">
                         <div class="speak-content">
                             <div class="row justify-content-md-center">
-                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/3-1.jpg" class=""></div>
+                                <div class="col-md-12"><img src="{{ URL::to('/') }}/storage/pages/3-1.jpg" class="">
+                                </div>
                                 <div class="col-md-12">
                                     <small><strong>Lee Sally</strong></small>
                                     <span><i class="fas fa-quote-left"></i>If you are a fan of crispy fish skin! Look no further and check out Black Taurus fish skin snacks! They are irresistible and crunchy in every bite!<i

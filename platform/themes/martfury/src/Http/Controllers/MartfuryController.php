@@ -292,7 +292,7 @@ class MartfuryController extends PublicController
         }
 
         return $response->setData([
-            'count' => Cart::instance('cart')->count(),
+            'count' => format_price(Cart::instance('cart')->rawTotal()),
             'html' => Theme::partial('cart'),
         ]);
     }
@@ -352,6 +352,58 @@ class MartfuryController extends PublicController
         Theme::asset()->remove('app-js');
 
         return $response->setData(Theme::partial('quick-view', compact('product', 'selectedAttrs', 'productImages')));
+    }
+
+    public function getAddCartBox(Request $request, $id, BaseHttpResponse $response)
+    {
+        if (!$request->ajax()) {
+            return $response->setNextUrl(route('public.index'));
+        }
+
+        $withCount = [];
+        if (EcommerceHelper::isReviewEnabled()) {
+            $withCount = [
+                'reviews',
+                'reviews as reviews_avg' => function ($query) {
+                    $query->select(DB::raw('avg(star)'));
+                },
+            ];
+        }
+
+        $product = get_products([
+            'condition' => [
+                'ec_products.id' => $id,
+                'ec_products.status' => BaseStatusEnum::PUBLISHED,
+            ],
+            'take' => 1,
+            'with' => [
+                'defaultProductAttributes',
+                'slugable',
+                'tags',
+                'tags.slugable',
+            ],
+            'withCount' => $withCount,
+        ]);
+
+
+        if (!$product) {
+            return $response->setNextUrl(route('public.index'));
+        }
+
+        $productImages = $product->images;
+        if ($product->is_variation) {
+            $product = $product->original_product;
+            $selectedAttrs = app(ProductVariationInterface::class)->getAttributeIdsOfChildrenProduct($product->id);
+            if (count($productImages) == 0) {
+                $productImages = $product->images;
+            }
+        } else {
+            $selectedAttrs = $product->defaultVariation->productAttributes;
+        }
+
+        Theme::asset()->remove('app-js');
+
+        return $response->setData(Theme::partial('addcart-box', compact('product', 'selectedAttrs', 'productImages')));
     }
 
     /**

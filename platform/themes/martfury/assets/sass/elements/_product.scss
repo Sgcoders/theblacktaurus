@@ -1633,13 +1633,14 @@
 
         .ps-product__shopping {
             display: block;
-
+            margin-bottom: 0;
             figure {
                 width: 100%;
 
                 .form-group--number {
                     width: 100%;
                     max-width: 100%;
+                    margin-bottom: 0;
                 }
             }
 
@@ -2221,7 +2222,7 @@
 .ps-product--quickview {
     display: none;
     margin-bottom: 0;
-    max-height: 500px;
+    max-height: 600px;
     overflow: auto;
 
     .owl-slider {
@@ -2352,7 +2353,7 @@
     z-index: 10002;
 }
 
-#product-quickview {
+#product-quickview, #product-addto-cart {
     .modal-dialog {
         max-width: 960px;
 

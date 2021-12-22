@@ -32,12 +32,12 @@
                 <div class="table-responsive">
                     <table class="table ps-table--compare">
                         <tbody>
-                            <tr>
-                                <td class="heading" rowspan="2">{{ __('Product') }}</td>
-                                @foreach(Cart::instance('compare')->content() as $item)
-                                    <td><a class="js-remove-from-compare-button" href="#" data-url="{{ route('public.compare.remove', $item->id) }}">{{ __('Remove') }}</a></td>
-                                @endforeach
-                            </tr>
+{{--                            <tr>--}}
+{{--                                <td class="heading" rowspan="2">{{ __('Product') }}</td>--}}
+{{--                                @foreach(Cart::instance('compare')->content() as $item)--}}
+{{--                                    <td><a class="js-remove-from-compare-button" href="#" data-url="{{ route('public.compare.remove', $item->id) }}">{{ __('Remove') }}</a></td>--}}
+{{--                                @endforeach--}}
+{{--                            </tr>--}}
 
                             <tr>
                                 @foreach(Cart::instance('compare')->content() as $item)
@@ -57,7 +57,7 @@
 
                         @if (EcommerceHelper::isReviewEnabled())
                             <tr>
-                                <td class="heading">{{ __('Rating') }}</td>
+{{--                                <td class="heading">{{ __('Rating') }}</td>--}}
                                 @foreach(Cart::instance('compare')->content() as $item)
                                     @php
                                         $product = $products->find($item->id);
@@ -77,7 +77,7 @@
                         @endif
 
                         <tr>
-                            <td class="heading">{{ __('Price') }}</td>
+{{--                            <td class="heading">{{ __('Price') }}</td>--}}
                             @foreach(Cart::instance('compare')->content() as $item)
                                 @php
                                     $product = $products->find($item->id);
@@ -91,7 +91,7 @@
                         </tr>
 
                         <tr>
-                            <td class="heading">{{ __('Description') }}</td>
+{{--                            <td class="heading">{{ __('Description') }}</td>--}}
                             @foreach(Cart::instance('compare')->content() as $item)
                                 @php
                                     $product = $products->find($item->id);
@@ -111,9 +111,9 @@
                         @foreach($attributeSets as $attributeSet)
                             @if ($attributeSet->is_comparable)
                                 <tr>
-                                    <td class="heading">
-                                        {{ $attributeSet->title }}
-                                    </td>
+{{--                                    <td class="heading">--}}
+{{--                                        {{ $attributeSet->title }}--}}
+{{--                                    </td>--}}
 
                                     @foreach(Cart::instance('compare')->content() as $item)
                                         @php
@@ -177,9 +177,9 @@
 
                         @if (EcommerceHelper::isCartEnabled())
                             <tr>
-                                <td class="heading"></td>
+{{--                                <td class="heading"></td>--}}
                                 @foreach(Cart::instance('compare')->content() as $item)
-                                    <td><a class="ps-btn add-to-cart-button" data-id="{{ $item->id }}" href="#" data-url="{{ route('public.cart.add-to-cart') }}">{{ __('Add To Cart') }}</a></td>
+                                    <td><a class="ps-btn add-to-cart-button" data-id="{{ $item->id }}" href="#" data-url="{{ route('public.ajax.addcart-box', $product->id) }}">{{ __('Add To Cart') }}</a></td>
                                 @endforeach
                             </tr>
                         @endif

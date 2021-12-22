@@ -5,19 +5,21 @@
             <div class="col-lg-3 col-sm-6 wow fadeInLeft animated">
                 <div>
                     <img src="{{ URL::to('/') }}/storage/pages/footer-logo.png" class="img-fluid d-block">
-                    <p>Consistent product quality, on-time<br/>
-                    delivery, and swift product launch,<br/>
-                    make FT Global the ideal contract<br/>
-                    food manufacturing partner</p>
-                    <ul class="footer-social">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    </ul>
+                    <div id="moveOnMobile">
+                        <p>Consistent product quality, on-time<br/>
+                            delivery, and swift product launch,<br/>
+                            make FT Global the ideal contract<br/>
+                            food manufacturing partner</p>
+                        <ul class="footer-social">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp animated">
+            <div class="col-6 col-lg-3 wow fadeInUp animated">
                 <div>
                     <h5>{{ __('Products') }}</h5>
                     <ul class="footer-bullete latest-products-link">
@@ -28,7 +30,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-6 wow fadeInUp animated">
+            <div class="col-6 col-lg-3 wow fadeInUp animated">
                 <div>
                     <h5>{{__('Explore')}}</h5>
 
@@ -79,7 +81,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-md-6 order-md-1">
+                <div class="col-md-6 order-md-1 copyright-txt">
                     <span>{{ theme_option('copyright') }}</span>
                 </div>
 
@@ -149,6 +151,28 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="product-addto-cart" tabindex="-1" role="dialog" aria-labelledby="product-addto-cart"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
+            <article class="ps-product--detail ps-product--fullwidth ps-product--quickview">
+            </article>
+        </div>
+    </div>
+</div>
+@if (get_ecommerce_setting('bg_music'))
+    <div class="bg_music">
+        @php
+            $bg_music = RvMedia::url(get_ecommerce_setting('bg_music'));
+            $silence_music = RvMedia::url('general/silence.mp3');
+        @endphp
+        <iframe src="{{$silence_music}}" allow="autoplay" id="iframeAudio" class="d-none">
+        </iframe>
+        <audio autoplay loop id="bgMusic">
+            <source src="{{$bg_music}}">
+        </audio>
+    </div>
+@endif
 
 <script>
     window.trans = {
@@ -183,18 +207,20 @@
         });
     </script>
 @endif
-<script type="text/javascript">
-    {{--$(document).ready(function () {--}}
-    {{--    axios.get("{{ route('public.ajax.featured-products-link') }}")--}}
-    {{--        .then(res => {--}}
-    {{--            $('.latest-products-link').html(res.data.data);--}}
-    {{--        })--}}
-    {{--        .catch(res => {--}}
-    {{--            console.log(res);--}}
-    {{--        });--}}
-    {{--    $('.select2-selection__arrow').addClass('fas fa-arrow-down');--}}
-    {{--    $('.download-links a').attr('download', "");--}}
-    {{--});--}}
-</script>
-</body>
-</html>
+@if (env('APP_URL') != 'http://localhost:8000')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            axios.get("{{ route('public.ajax.featured-products-link') }}")
+                .then(res => {
+                    $('.latest-products-link').html(res.data.data);
+                })
+                .catch(res => {
+                    console.log(res);
+                });
+            $('.select2-selection__arrow').addClass('fas fa-arrow-down');
+            $('.download-links a').attr('download', "");
+        });
+    </script>
+    @endif
+    </body>
+    </html>

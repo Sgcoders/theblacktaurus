@@ -55,11 +55,12 @@
 @endphp
 
 {!! Theme::get('topHeader') !!}
+<div class="header-group">
 <div class="topbar">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-sm-12">
-                <span>{{__('Header-Msg', ['price' =>'$48'])}}</span></div>
+                <span>{{ get_ecommerce_setting('header_msg') }}</span></div>
             <div class="col-lg-6 col-sm-12">
                 <ul class="topbar-links">
                     @if (auth('customer')->check())
@@ -85,7 +86,7 @@
                             <a class="header__extra btn-wishlist" href="{{ route('public.wishlist') }}"><i
                                     class="icon-heart"></i><span><i>{{ !auth('customer')->check() ? Cart::instance('wishlist')->count() : auth('customer')->user()->wishlist()->count() }}</i></span></a>
                             <a class="header__extra btn-shopping-cart" href="{{ route('public.cart') }}"><i
-                                    class="icon-bag2"></i><span><i>{{ Cart::instance('cart')->count() }}</i></span></a>
+                                    class="icon-bag2"></i><span><i>{{ format_price(Cart::instance('cart')->rawTotal()) }}</i></span></a>
                             </div>
                         </li>
                         @if (is_plugin_active('language'))
@@ -120,3 +121,4 @@
         </div>
     </div>
 </header>
+</div>

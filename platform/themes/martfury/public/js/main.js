@@ -917,7 +917,7 @@ var __webpack_exports__ = {};
     navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
     responsive: {
       0: {
-        items: 1
+        items: 2
       },
       600: {
         items: 2

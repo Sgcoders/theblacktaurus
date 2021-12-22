@@ -34,6 +34,9 @@ Route::group(['namespace' => 'Theme\Martfury\Http\Controllers', 'middleware' => 
         Route::get('ajax/quick-view/{id}', 'MartfuryController@getQuickView')
             ->name('public.ajax.quick-view');
 
+        Route::get('ajax/addcart-box/{id}', 'MartfuryController@getAddCartBox')
+            ->name('public.ajax.addcart-box');
+
         Route::get('ajax/featured-posts', 'MartfuryController@ajaxGetFeaturedPosts')
             ->name('public.ajax.featured-posts');
 

@@ -6,10 +6,6 @@
                      alt="{{ $product->name }}">
             </figure>
         </a>
-
-        <button class="add-to-cart-button" data-id="{{ $product->id }}" href="#"
-                data-url="{{ route('public.cart.add-to-cart') }}"><i
-                class="fas fa-shopping-cart"></i>{{ __('Add To Cart') }}</button>
         <ul class="ps-product__actions">
                 <li><a class="js-quick-view-button" href="#"
                        data-url="{{ route('public.ajax.quick-view', $product->id) }}" title="{{ __('Quick View') }}"><i
@@ -24,6 +20,7 @@
         <div>
 
             <h3>{{ $product->name }}</h3>
+
             {!! apply_filters('ecommerce_before_product_price_in_listing', null, $product) !!}
             <span class="price @if ($product->front_sale_price !== $product->price) sale @endif">{{ format_price($product->front_sale_price_with_taxes) }}
                 @if ($product->front_sale_price !== $product->price)
@@ -38,6 +35,10 @@
                     <span class="rating_num">({{ $product->reviews_count }})</span>
                 </div>
             @endif
+
+        <button class="add-to-cart-button" data-id="{{ $product->id }}" href="#"
+                data-url="{{ route('public.ajax.addcart-box', $product->id) }}"><i
+                class="fas fa-shopping-cart"></i>{{ __('Add To Cart') }}</button>
         </div>
     </div>
 @endif

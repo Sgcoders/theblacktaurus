@@ -54,6 +54,28 @@
             <div class="flexbox-annotated-section">
                 <div class="flexbox-annotated-section-annotation">
                     <div class="annotated-section-title pd-all-20">
+                        <h2>{{ trans('plugins/ecommerce::front-pages.title') }}</h2>
+                    </div>
+                    <div class="annotated-section-description pd-all-20 p-none-t">
+                        <p class="color-note">{{ trans('plugins/ecommerce::front-pages.description') }}</p>
+                    </div>
+                </div>
+                <div class="flexbox-annotated-section-content">
+                    <div class="wrapper-content pd-all-20">
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="header_msg">{{ trans('plugins/ecommerce::front-pages.header_msg') }}</label>
+                            <input type="text" class="next-input" name="header_msg" id="header_msg" value="{{ get_ecommerce_setting('header_msg') }}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="bg_music">{{ trans('plugins/ecommerce::front-pages.bg_music') }}</label>
+                            {!! Form::mediaFile('bg_music', get_ecommerce_setting('bg_music')) !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flexbox-annotated-section">
+                <div class="flexbox-annotated-section-annotation">
+                    <div class="annotated-section-title pd-all-20">
                         <h2>{{ trans('plugins/ecommerce::ecommerce.standard_and_format') }}</h2>
                     </div>
                     <div class="annotated-section-description pd-all-20 p-none-t">
