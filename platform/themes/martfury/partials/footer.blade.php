@@ -169,12 +169,17 @@
         <iframe src="{{$silence_music}}" allow="autoplay" id="iframeAudio" class="d-none">
         </iframe>
         <audio autoplay loop id="bgMusic">
-            <source src="{{$bg_music}}">
+            <source src="{{$bg_music}}" type="audio/mp3">
         </audio>
     </div>
 @endif
 
 <script>
+    document.addEventListener('click', musicPlay);
+    function musicPlay() {
+        $('#bgMusic')[0].play();
+        document.removeEventListener('click', musicPlay);
+    }
     window.trans = {
         "View All": "{{ __('View All') }}",
         "No reviews!": "{{ __('No reviews!') }}",
