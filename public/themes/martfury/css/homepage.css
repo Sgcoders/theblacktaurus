@@ -1015,7 +1015,7 @@ ul.privacypl li a:hover {
 
 @media (max-width: 810px) {
     .topbar [class^=col-]:first-child {
-        display: none
+        /* display: none */
     }
 
     .topbar {

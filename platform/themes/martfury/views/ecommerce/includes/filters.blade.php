@@ -18,7 +18,7 @@
 
 
 <div class="nav-holder">
-    <h2 class="text-uppercase">{{ __('Snack Bases') }}</h2>
+    <h2 class="text-uppercase text-center">{{ __('Snack Bases') }}</h2>
     <div class="nav-holderinner">
         <ul class="nav justify-content-center nav-pills ps-list--categories" id="v-pills-tab" role="tablist"
              aria-orientation="vertical">

@@ -59,26 +59,26 @@
 <div class="topbar">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 col-sm-12">
+            <div class="col-lg-6 col-8">
                 <span>{{ get_ecommerce_setting('header_msg') }}</span></div>
-            <div class="col-lg-6 col-sm-12">
+            <div class="col-lg-6 col-4">
                 <ul class="topbar-links">
                     @if (auth('customer')->check())
-                        <li><a href="{{ route('customer.overview') }}"
+                        <li class="d-none d-md-inline-block"><a href="{{ route('customer.overview') }}"
                                class="customer-name"><i class="fas fa-user"></i>{{ auth('customer')->user()->name }}</a>
                         </li>
-                        <li>|</li>
-                        <li>
+                        <li class="d-none d-md-inline-block">|</li>
+                        <li class="d-none d-md-inline-block">
                             <a href="{{ route('customer.logout') }}">{{ __('Logout') }}</a></li>
                     @else
-                        <li><a href="{{ route('customer.login') }}"><i class="fas fa-user"></i>{{ __('Login') }}</a>
+                        <li class="d-none d-md-inline-block"><a href="{{ route('customer.login') }}"><i class="fas fa-user"></i>{{ __('Login') }}</a>
                         </li>
-                        <li>|</li>
-                        <li><a
+                        <li class="d-none d-md-inline-block">|</li>
+                        <li class="d-none d-md-inline-block"><a
                                 href="{{ route('customer.register') }}">{{ __('Register') }}</a></li>
                         @endif
                         </li>
-                        <li>|</li>
+                        <li class="d-none d-md-inline-block">|</li>
                         <li>
                             <div  class="header__actions">
                             <a class="header__extra btn-compare" href="{{ route('public.compare') }}"><i
