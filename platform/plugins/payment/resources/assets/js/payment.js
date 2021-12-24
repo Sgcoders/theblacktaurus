@@ -3,8 +3,11 @@
 var BPayment = BPayment || {};
 
 BPayment.initResources = function () {
+    // var checkCodValid =
+    //     $('#shipping-method-wrapper .list-group-item:last-child input').attr('checked') === 'checked';
+    // let paymentMethod = checkCodValid ?
+    //     $('#payment_cod') : $(document).find('input[name=payment_method]').first();
     let paymentMethod = $(document).find('input[name=payment_method]').first();
-
     if (paymentMethod.length) {
         paymentMethod.trigger('click').trigger('change');
         paymentMethod.closest('.list-group-item').find('.payment_collapse_wrap').addClass('show');
@@ -57,6 +60,15 @@ BPayment.init = function () {
     BPayment.initResources();
 
     $(document).on('change', '.js_payment_method', function () {
+        if ($(this).val() === 'cod') {
+            $('#shipping-method-wrapper .list-group-item:last-child input').trigger('click');
+        }else{
+            let codShip =  $('#shipping-method-wrapper .list-group-item:last-child input');
+            if(codShip.attr('checked') != undefined){
+                codShip.removeAttr('checked');
+                 $('#shipping-method-wrapper .list-group-item:first-child input').trigger('click');
+            }
+        }
         $('.payment_collapse_wrap').removeClass('collapse').removeClass('show').removeClass('active');
     });
 
@@ -94,7 +106,7 @@ BPayment.init = function () {
 $(document).ready(function () {
     BPayment.init();
 
-    document.addEventListener('payment-form-reloaded', function() {
+    document.addEventListener('payment-form-reloaded', function () {
         BPayment.initResources();
     });
 });

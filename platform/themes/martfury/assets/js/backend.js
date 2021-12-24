@@ -969,6 +969,7 @@
                                 if (!response.error) {
                                     $('.ps-cart--mobile').html(response.data.html);
                                     $('.btn-shopping-cart span i').text(response.data.count);
+                                    $('#product-addto-cart').modal('hide');
                                 }
                             }
                         });

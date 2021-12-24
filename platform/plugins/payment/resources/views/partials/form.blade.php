@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('vendor/core/plugins/payment/css/payment.css') }}?v=1.0.4">
-<script src="{{ asset('vendor/core/plugins/payment/js/payment.js') }}?v=1.0.4"></script>
+<script src="{{ asset('vendor/core/plugins/payment/js/payment.js') }}?v=1.0.5"></script>
 
 <div class="checkout-wrapper">
     <div>

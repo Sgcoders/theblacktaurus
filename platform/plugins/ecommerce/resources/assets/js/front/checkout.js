@@ -73,11 +73,7 @@ class MainCheckout {
                 $('.mobile-total').text('...');
 
                 let isAddressAvailable = $('.customer-address-payment-form #address_id option:selected').val();
-
-                if (!isAddressAvailable) {
-                    let addressForm = $('.customer-address-payment-form').clone();
-                }
-
+                let addressForm = $('.customer-address-payment-form').clone();
                 $('.shipping-info-loading').show();
                 $(shippingForm).load(window.location.href
                     + '?shipping_method=' + shippingMethod.val()
@@ -138,9 +134,7 @@ class MainCheckout {
 
             let isAddressAvailable = $('.customer-address-payment-form #address_id option:selected').val();
 
-            if (!isAddressAvailable) {
-                let addressForm = $('.customer-address-payment-form').clone();
-            }
+            let addressForm = $('.customer-address-payment-form').clone();
 
             $('.shipping-info-loading').show();
             $(shippingForm).load(window.location.href + '?' + $.param(methods) + ' ' + shippingForm + ' > *', () => {
@@ -164,7 +158,7 @@ class MainCheckout {
             disablePaymentMethodsForm();
 
             $('.mobile-total').text('...');
-
+            let isAddressAvailable =  $(".customer-address-payment-form #address_id option:selected").val();
             let addressForm = $('.customer-address-payment-form').clone();
             $('.shipping-info-loading').show();
             $(shippingForm).load(window.location.href
