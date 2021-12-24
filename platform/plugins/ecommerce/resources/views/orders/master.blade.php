@@ -19,7 +19,7 @@
 
     {!! Html::style('vendor/core/core/base/libraries/toastr/toastr.min.css') !!}
 
-    {!! Html::script('vendor/core/plugins/ecommerce/js/checkout.js?v=1.1.01') !!}
+    {!! Html::script('vendor/core/plugins/ecommerce/js/checkout.js?v=1.2.2') !!}
 
     {!! apply_filters('ecommerce_checkout_header', null) !!}
 </head>
