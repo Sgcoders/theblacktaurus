@@ -1030,9 +1030,8 @@ ul.privacypl li a:hover {
         padding-right: 10px
     }
 
-    #heroBanner .carousel-item img {
-        object-fit: cover;
-        object-position: -150px 0px;
+    #heroBanner .carousel-item, #heroBanner .carousel-item img, #heroBanner{
+        height: auto;
     }
 
     .navigation-area {
